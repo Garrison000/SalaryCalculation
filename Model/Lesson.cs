@@ -25,7 +25,7 @@ namespace Model
         public virtual LessonType Type { get; set; }
         public virtual SchoolClass SchoolClass { get; set; }
         public double Value { get; set; }
-        //课程类型和时间
+        public bool Enabled { get; set; }
     }
     public enum LessonTypeEnum
     {

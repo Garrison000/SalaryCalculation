@@ -16,6 +16,6 @@ namespace Model
     public enum TimeType
     {
         All = 0,
-        NoLimit = -1
+        Default = -1
     }
 }

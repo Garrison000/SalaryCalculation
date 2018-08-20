@@ -129,13 +129,48 @@ namespace Helper
         /// <param name="t"></param>
         /// <param name="term"></param>
         /// <returns></returns>
-        public LessonResult FindLesson(Teacher t,int term = 0)
+        public LessonResult FindLesson(Teacher t, int term = (int)TimeType.Default, int week = (int)TimeType.Default, int order = (int)TimeType.Default)
         {
-            if (term == 0) term = currentTerm;
+            if (term == (int)TimeType.Default) term = currentTerm;
             if (t == null)
                 return LessonResult.Error("找不到对应的教师。");
             var lessons = context.Lessons.Where(o => o.Teacher == t && o.Time.Term == term);
             return LessonResult.Success(lessons);
+        }
+
+        public LessonResult FindLesson(Teacher t, Time time)
+        {
+            if (t == null)
+                return LessonResult.Error("找不到对应的教师。");
+            if (time.Term == (int)TimeType.Default)
+                time.Term = currentTerm;
+            if (time.Week == (int)TimeType.All || time.Week == (int)TimeType.Default)
+            {
+                if (time.Order == (int)TimeType.All || time.Order == (int)TimeType.Default)
+                {
+                    var lessons = context.Lessons.Where(o => o.Time.Term == time.Term);
+                    return LessonResult.Success(lessons);
+                }
+                else
+                {
+                    var lessons = context.Lessons.Where(o => o.Time.Term == time.Term && o.Time.Order==time.Order);
+                    return LessonResult.Success(lessons);
+                }
+
+            }
+            else
+            {
+                if (time.Order == (int)TimeType.All || time.Order == (int)TimeType.Default)
+                {
+                    var lessons = context.Lessons.Where(o => o.Time.Term == time.Term && o.Time.Week == time.Week);
+                    return LessonResult.Success(lessons);
+                }
+                else
+                {
+                    var lessons = context.Lessons.Where(o => o.Time.Term == time.Term && o.Time.Week == time.Week && o.Time.Order == time.Order);
+                    return LessonResult.Success(lessons);
+                }
+            }
         }
 
         /// <summary>
@@ -152,6 +187,68 @@ namespace Helper
             var lessons = context.Lessons.Where(o => o.SchoolClass == c && o.Time.Term == term);
             return LessonResult.Success(lessons);
         }
+
+        /// <summary>
+        /// 在工资计算时无视某时间段的课程
+        /// </summary>
+        /// <param name="t"></param>
+        /// <param name="time"></param>
+        /// <returns></returns>
+        public LessonResult DisableLesson(Teacher t, Time time)
+        {
+            var result = FindLesson(t, time);
+            if (!result.Succeeded)
+                return result;
+            var lessons = result.Object as IQueryable<Lesson>;
+            foreach (var lesson in lessons)
+            {
+                lesson.Enabled = false;
+            }
+            Save();
+            return LessonResult.Success();
+        }
+
+        public LessonResult DisableLesson(Lesson l)
+        {
+            if (l == null)
+                return LessonResult.Error("停用课程时没有找到对应的课程。");
+            l.Enabled = false;
+            Save();
+            return LessonResult.Success();
+        }
+
+        public LessonResult EnableLesson(Teacher t, Time time)
+        {
+            var result = FindLesson(t, time);
+            if (!result.Succeeded)
+                return result;
+            var lessons = result.Object as IQueryable<Lesson>;
+            foreach (var lesson in lessons)
+            {
+                lesson.Enabled = true;
+            }
+            Save();
+            return LessonResult.Success();
+        }
+
+        public LessonResult EnableLesson(Lesson l)
+        {
+            if (l == null)
+                return LessonResult.Error("启用课程时没有找到对应的课程。");
+            l.Enabled = true;
+            Save();
+            return LessonResult.Success();
+        }
+
+        public LessonResult ChangeLessonStatus(Lesson l)
+        {
+            if (l == null)
+                return LessonResult.Error("改变课程状态时没有找到对应的课程。");
+            l.Enabled = !l.Enabled;
+            Save();
+            return LessonResult.Success();
+        }
+
         public Teacher GetTeacher(string teacherName)
         {
             var teacher = context.Teachers.FirstOrDefault(o => o.Name == teacherName);//以名字为索引。
