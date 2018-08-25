@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="ActivityHelper.cs" />
     <Compile Include="ActivityResult.cs" />
+    <Compile Include="ExcelOutHelper.cs" />
     <Compile Include="LessonHelper.cs" />
     <Compile Include="LessonResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
