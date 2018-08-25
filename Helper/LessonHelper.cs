@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Helper
 {
@@ -63,7 +64,7 @@ namespace Helper
             //名称类型对应表的初始化
         }
         
-        public LessonResult InputLesson(string name,string teacherName, string @class, Time time, int term=0, double value=0)
+        public LessonResult InputLesson(string name,string teacherName, string @class, Time time, int term= (int)TimeType.Default, double value=0)
         {
             if(teacherName.Length<1||@class==null)
             {
@@ -74,8 +75,10 @@ namespace Helper
             {
                 return LessonResult.Error("班级字符串的长度不足6位，检查输入。");
             }
+            if (term == (int)TimeType.Default)
+                term = currentTerm;
             var schoolClass = GetSchoolClass(@class);
-            if (time.Week ==(int)TimeType.All)//没有指定哪一周的课程，对所有周都加入一次
+            if (time.Week ==(int)TimeType.Default)//没有指定哪一周的课程，对所有周都加入一次
             {
                 for(int i=1;i<=totalWeeks;i++)
                 {
@@ -85,7 +88,32 @@ namespace Helper
                         return result;
                     }
                 }
+                teacher.RegularValue += 1;
                 return LessonResult.Success();
+            }
+            else if (time.Week == (int)TimeType.Sigle)
+            {
+                for(int i=1;i<=totalWeeks;i=i+2)
+                {
+                    var result = InputLesson(name, teacher, schoolClass, new Time { Order = time.Order, Week = i, Term = term }, term, value);
+                    if (!result.Succeeded)
+                    {
+                        return result;
+                    }
+                }
+                teacher.RegularValue += 0.5;
+            }
+            else if (time.Week == (int)TimeType.Double)
+            {
+                for (int i = 2; i <= totalWeeks; i = i + 2)
+                {
+                    var result = InputLesson(name, teacher, schoolClass, new Time { Order = time.Order, Week = i, Term = term }, term, value);
+                    if (!result.Succeeded)
+                    {
+                        return result;
+                    }
+                }
+                teacher.RegularValue += 0.5;
             }
             return InputLesson(name, teacher, schoolClass, time, term, value);
         }
@@ -100,20 +128,20 @@ namespace Helper
         /// <param name="term"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public LessonResult InputLesson(string name, Teacher teacher, SchoolClass schoolClass, Time time, int term=0, double value=0)
+        public LessonResult InputLesson(string name, Teacher teacher, SchoolClass schoolClass, Time time, int term= (int)TimeType.Default, double value=0)
         {
             var gettyperesult = GetLessonType(name, schoolClass.Grade);
             if(!gettyperesult.Succeeded)
             {
                 return gettyperesult;
             }
+
             var type = gettyperesult.Object as LessonType;
             var lesson = new Lesson
             {
                 Teacher = teacher,
                 SchoolClass = schoolClass,
                 Time = time,
-                ID = new Guid(),
                 Name = name,
                 Type = type,
                 Value = value == 0 ? type.DefaultValue : value
@@ -131,43 +159,57 @@ namespace Helper
         /// <returns></returns>
         public LessonResult FindLesson(Teacher t, int term = (int)TimeType.Default, int week = (int)TimeType.Default, int order = (int)TimeType.Default)
         {
-            if (term == (int)TimeType.Default) term = currentTerm;
+            if (term == (int)TimeType.Default)
+                term = currentTerm;
             if (t == null)
                 return LessonResult.Error("找不到对应的教师。");
-            var lessons = context.Lessons.Where(o => o.Teacher == t && o.Time.Term == term);
-            return LessonResult.Success(lessons);
+            Time time = new Time
+            {
+                Term = term,
+                Order = order,
+                Week = week
+            };
+            return FindLesson(t, time);
         }
 
+        /// <summary>
+        /// 按照教师和时间寻找课程。时间为默认时对该层级时间全部查询。
+        /// </summary>
+        /// <param name="t"></param>
+        /// <param name="time"></param>
+        /// <returns></returns>
         public LessonResult FindLesson(Teacher t, Time time)
         {
             if (t == null)
                 return LessonResult.Error("找不到对应的教师。");
             if (time.Term == (int)TimeType.Default)
                 time.Term = currentTerm;
-            if (time.Week == (int)TimeType.All || time.Week == (int)TimeType.Default)
+            if (time.Week == (int)TimeType.None && time.Order == (int)TimeType.None)
+                return LessonResult.Success(new List<Lesson>());
+            if (time.Week == (int)TimeType.Default)
             {
-                if (time.Order == (int)TimeType.All || time.Order == (int)TimeType.Default)
+                if (time.Order == (int)TimeType.Default)
                 {
-                    var lessons = context.Lessons.Where(o => o.Time.Term == time.Term);
+                    var lessons = t.Lessons.Where(o => o.Time.Term == time.Term);
                     return LessonResult.Success(lessons);
                 }
                 else
                 {
-                    var lessons = context.Lessons.Where(o => o.Time.Term == time.Term && o.Time.Order==time.Order);
+                    var lessons = t.Lessons.Where(o => o.Time.Term == time.Term && o.Time.Order==time.Order);
                     return LessonResult.Success(lessons);
                 }
 
             }
             else
             {
-                if (time.Order == (int)TimeType.All || time.Order == (int)TimeType.Default)
+                if (time.Order == (int)TimeType.Default)
                 {
-                    var lessons = context.Lessons.Where(o => o.Time.Term == time.Term && o.Time.Week == time.Week);
+                    var lessons = t.Lessons.Where(o => o.Time.Term == time.Term && o.Time.Week == time.Week);
                     return LessonResult.Success(lessons);
                 }
                 else
                 {
-                    var lessons = context.Lessons.Where(o => o.Time.Term == time.Term && o.Time.Week == time.Week && o.Time.Order == time.Order);
+                    var lessons = t.Lessons.Where(o => o.Time.Term == time.Term && o.Time.Week == time.Week && o.Time.Order == time.Order);
                     return LessonResult.Success(lessons);
                 }
             }
@@ -179,9 +221,9 @@ namespace Helper
         /// <param name="c"></param>
         /// <param name="term"></param>
         /// <returns></returns>
-        public LessonResult FindLesson(SchoolClass c,int term = 0)
+        public LessonResult FindLesson(SchoolClass c,int term = (int)TimeType.Default)
         {
-            if (term == 0) term = currentTerm;
+            if (term == (int)TimeType.Default) term = currentTerm;
             if (c == null)
                 return LessonResult.Error("找不到对应的班级。");
             var lessons = context.Lessons.Where(o => o.SchoolClass == c && o.Time.Term == term);

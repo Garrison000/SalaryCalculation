@@ -9,7 +9,7 @@ namespace Model
 {
     public class Constants
     {
-        public int ID { get; set; }
+        public long ID { get; set; }
         public double Price_A { get; set; }
         public double Price_B { get; set; }
         public double Price_C { get; set; }
@@ -23,5 +23,6 @@ namespace Model
         public int Duty2 { get; set; }
         public int Duty3 { get; set; }
         public int Over_Span { get; set; }
+        public int Over_Price { get; set; }
     }
 }

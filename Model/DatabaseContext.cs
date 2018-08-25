@@ -18,6 +18,11 @@ namespace Model
             }
             return context;
         }
+        public DatabaseContext()
+            :base(@"data source = (LocalDb)\MSSQLLocalDB; initial catalog = Model.Salary; integrated security = True; MultipleActiveResultSets=True;App=EntityFramework")
+        {
+
+        }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Lesson> Lessons { get; set; }
         public DbSet<LessonType> LessonTypes { get; set; }

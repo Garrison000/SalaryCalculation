@@ -8,7 +8,7 @@ namespace Model
 {
     public class NameType
     {
-        public int ID { get; set; }
+        public long ID { get; set; }
         public string Name { get; set; }
         public int Grade { get; set; }
         public LessonTypeEnum LessonTypeEnum { get; set; }

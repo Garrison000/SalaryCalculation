@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helper", "Helper\Helper.csproj", "{1E4CF96C-43B4-4382-9298-81CCA640D805}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalaryCalcWF", "SalaryCalcWF\SalaryCalcWF.csproj", "{2EBEE26F-3160-4C76-B2E8-206B309F20C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{1E4CF96C-43B4-4382-9298-81CCA640D805}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E4CF96C-43B4-4382-9298-81CCA640D805}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E4CF96C-43B4-4382-9298-81CCA640D805}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EBEE26F-3160-4C76-B2E8-206B309F20C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EBEE26F-3160-4C76-B2E8-206B309F20C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EBEE26F-3160-4C76-B2E8-206B309F20C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EBEE26F-3160-4C76-B2E8-206B309F20C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

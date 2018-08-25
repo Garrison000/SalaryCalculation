@@ -9,7 +9,7 @@ namespace Model
 {
     public class LessonType
     {
-        public int ID { get; set; }
+        public long ID { get; set; }
         public LessonTypeEnum Type { get; set; }
         public string Name { get; set; }
         public int DefaultValue { get; set; }
@@ -18,7 +18,7 @@ namespace Model
     }
     public class Lesson
     {
-        public Guid ID { get; set; }
+        public long ID { get; set; }
         public string Name { get; set; }
         public virtual Teacher Teacher { get; set; }
         public Time Time { get; set; }

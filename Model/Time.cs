@@ -15,7 +15,9 @@ namespace Model
 
     public enum TimeType
     {
-        All = 0,
-        Default = -1
+        None = 0,
+        Default = -1,
+        Double = -2,
+        Sigle = -3
     }
 }
