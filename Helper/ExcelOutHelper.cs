@@ -10,16 +10,16 @@ namespace Helper
 {
     class ExcelOutHelper
     {
-        public Application app { get; set; }
-        public Workbooks wbs { get; set; }
-        public Workbook wb { get; set; }
-        public Worksheet ws { get; set; }
-        DatabaseContext db { get; set; }
+        private Application app { get; set; }
+        private Workbooks wbs { get; set; }
+        private Workbook wb { get; set; }
+        private Worksheet ws { get; set; }
+        private DatabaseContext db { get; set; }
 
         public string ExcelOut()
         {
             ExcelInit();
-            Save();
+            //Save();
             if(SaveAs("工资表"))
             {
                 return "文件导出成功！";
@@ -30,7 +30,7 @@ namespace Helper
             }
         }
 
-        public void ExcelInit()
+        private void ExcelInit()
         {
             db = DatabaseContext.GetInstance();
 
@@ -49,19 +49,19 @@ namespace Helper
                 i++;
             }
         }
-        public bool Save()
-        {
-            try
-            {
-                wb.Save();
-                return true;
-            }
-            catch(Exception e)
-            {
-                return false;
-            }
-        }
-        public bool SaveAs(object Filename)
+        //public bool Save()
+        //{
+        //    try
+        //    {
+        //        wb.Save();
+        //        return true;
+        //    }
+        //    catch(Exception e)
+        //    {
+        //        return false;
+        //    }
+        //}
+        private bool SaveAs(object Filename)
         {
             try
             {
