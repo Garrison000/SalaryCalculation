@@ -28,65 +28,65 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("节点1");
-            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("一年级", new System.Windows.Forms.TreeNode[] {
-            treeNode21});
-            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("二年级");
-            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("三年级");
-            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("四年级");
-            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("五年级");
-            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("六年级");
-            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("初一");
-            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("初二");
-            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("初三");
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("节点1");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("一年级", new System.Windows.Forms.TreeNode[] {
+            treeNode1});
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("二年级");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("三年级");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("四年级");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("五年级");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("六年级");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("初一");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("初二");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("初三");
+            this.tvwClass = new System.Windows.Forms.TreeView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpLesson = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // treeView1
+            // tvwClass
             // 
-            this.treeView1.Location = new System.Drawing.Point(27, 53);
-            this.treeView1.Name = "treeView1";
-            treeNode21.Name = "节点1";
-            treeNode21.Text = "节点1";
-            treeNode22.Name = "节点0";
-            treeNode22.Text = "一年级";
-            treeNode23.Name = "节点2";
-            treeNode23.Text = "二年级";
-            treeNode24.Name = "节点3";
-            treeNode24.Text = "三年级";
-            treeNode25.Name = "节点4";
-            treeNode25.Text = "四年级";
-            treeNode26.Name = "节点5";
-            treeNode26.Text = "五年级";
-            treeNode27.Name = "节点6";
-            treeNode27.Text = "六年级";
-            treeNode28.Name = "节点7";
-            treeNode28.Text = "初一";
-            treeNode29.Name = "节点8";
-            treeNode29.Text = "初二";
-            treeNode30.Name = "节点9";
-            treeNode30.Text = "初三";
-            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode22,
-            treeNode23,
-            treeNode24,
-            treeNode25,
-            treeNode26,
-            treeNode27,
-            treeNode28,
-            treeNode29,
-            treeNode30});
-            this.treeView1.Size = new System.Drawing.Size(148, 416);
-            this.treeView1.TabIndex = 0;
+            this.tvwClass.Location = new System.Drawing.Point(27, 53);
+            this.tvwClass.Name = "tvwClass";
+            treeNode1.Name = "节点1";
+            treeNode1.Text = "节点1";
+            treeNode2.Name = "节点0";
+            treeNode2.Text = "一年级";
+            treeNode3.Name = "节点2";
+            treeNode3.Text = "二年级";
+            treeNode4.Name = "节点3";
+            treeNode4.Text = "三年级";
+            treeNode5.Name = "节点4";
+            treeNode5.Text = "四年级";
+            treeNode6.Name = "节点5";
+            treeNode6.Text = "五年级";
+            treeNode7.Name = "节点6";
+            treeNode7.Text = "六年级";
+            treeNode8.Name = "节点7";
+            treeNode8.Text = "初一";
+            treeNode9.Name = "节点8";
+            treeNode9.Text = "初二";
+            treeNode10.Name = "节点9";
+            treeNode10.Text = "初三";
+            this.tvwClass.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode2,
+            treeNode3,
+            treeNode4,
+            treeNode5,
+            treeNode6,
+            treeNode7,
+            treeNode8,
+            treeNode9,
+            treeNode10});
+            this.tvwClass.Size = new System.Drawing.Size(148, 416);
+            this.tvwClass.TabIndex = 0;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.treeView1);
+            this.groupBox1.Controls.Add(this.tvwClass);
             this.groupBox1.Location = new System.Drawing.Point(35, 44);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(205, 528);
@@ -96,7 +96,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.tableLayoutPanel1);
+            this.groupBox2.Controls.Add(this.tlpLesson);
             this.groupBox2.Location = new System.Drawing.Point(270, 44);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(1017, 528);
@@ -104,32 +104,32 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "课表";
             // 
-            // tableLayoutPanel1
+            // tlpLesson
             // 
-            this.tableLayoutPanel1.ColumnCount = 6;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(21, 34);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 12;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(959, 475);
-            this.tableLayoutPanel1.TabIndex = 5;
+            this.tlpLesson.ColumnCount = 6;
+            this.tlpLesson.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlpLesson.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlpLesson.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlpLesson.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlpLesson.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlpLesson.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlpLesson.Location = new System.Drawing.Point(21, 34);
+            this.tlpLesson.Name = "tlpLesson";
+            this.tlpLesson.RowCount = 12;
+            this.tlpLesson.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
+            this.tlpLesson.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
+            this.tlpLesson.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
+            this.tlpLesson.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
+            this.tlpLesson.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
+            this.tlpLesson.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
+            this.tlpLesson.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
+            this.tlpLesson.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
+            this.tlpLesson.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
+            this.tlpLesson.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
+            this.tlpLesson.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
+            this.tlpLesson.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
+            this.tlpLesson.Size = new System.Drawing.Size(959, 475);
+            this.tlpLesson.TabIndex = 5;
             // 
             // ClassLesson
             // 
@@ -148,9 +148,9 @@
 
         #endregion
 
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView tvwClass;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tlpLesson;
     }
 }

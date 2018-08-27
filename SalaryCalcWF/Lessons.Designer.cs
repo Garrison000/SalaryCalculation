@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.lblSort = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.dgvLesson = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLesson)).BeginInit();
             this.SuspendLayout();
             // 
             // lblSort
@@ -42,26 +42,26 @@
             this.lblSort.TabIndex = 0;
             this.lblSort.Text = "A类";
             // 
-            // dataGridView1
+            // dgvLesson
             // 
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(58, 97);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 37;
-            this.dataGridView1.Size = new System.Drawing.Size(624, 334);
-            this.dataGridView1.TabIndex = 1;
+            this.dgvLesson.AllowUserToOrderColumns = true;
+            this.dgvLesson.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvLesson.Location = new System.Drawing.Point(58, 97);
+            this.dgvLesson.Name = "dgvLesson";
+            this.dgvLesson.RowTemplate.Height = 37;
+            this.dgvLesson.Size = new System.Drawing.Size(624, 334);
+            this.dgvLesson.TabIndex = 1;
             // 
             // Lessons
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(745, 504);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvLesson);
             this.Controls.Add(this.lblSort);
             this.Name = "Lessons";
             this.Text = "Lessons";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLesson)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -70,6 +70,6 @@
         #endregion
 
         private System.Windows.Forms.Label lblSort;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvLesson;
     }
 }

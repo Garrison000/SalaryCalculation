@@ -29,33 +29,33 @@
         private void InitializeComponent()
         {
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.button27 = new System.Windows.Forms.Button();
-            this.button22 = new System.Windows.Forms.Button();
-            this.button21 = new System.Windows.Forms.Button();
-            this.button20 = new System.Windows.Forms.Button();
-            this.textBox17 = new System.Windows.Forms.TextBox();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnAddOcc = new System.Windows.Forms.Button();
+            this.btnAddMon = new System.Windows.Forms.Button();
+            this.tbxType = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
-            this.textBox16 = new System.Windows.Forms.TextBox();
+            this.tbxValue = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
-            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.tbxName = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.listBox3 = new System.Windows.Forms.ListBox();
+            this.lstTeachers = new System.Windows.Forms.ListBox();
             this.groupBox8.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox8
             // 
-            this.groupBox8.Controls.Add(this.button27);
-            this.groupBox8.Controls.Add(this.button22);
-            this.groupBox8.Controls.Add(this.button21);
-            this.groupBox8.Controls.Add(this.button20);
-            this.groupBox8.Controls.Add(this.textBox17);
+            this.groupBox8.Controls.Add(this.btnDelete);
+            this.groupBox8.Controls.Add(this.btnAdd);
+            this.groupBox8.Controls.Add(this.btnAddOcc);
+            this.groupBox8.Controls.Add(this.btnAddMon);
+            this.groupBox8.Controls.Add(this.tbxType);
             this.groupBox8.Controls.Add(this.label24);
-            this.groupBox8.Controls.Add(this.textBox16);
+            this.groupBox8.Controls.Add(this.tbxValue);
             this.groupBox8.Controls.Add(this.label23);
-            this.groupBox8.Controls.Add(this.textBox15);
+            this.groupBox8.Controls.Add(this.tbxName);
             this.groupBox8.Controls.Add(this.label22);
             this.groupBox8.Location = new System.Drawing.Point(466, 47);
             this.groupBox8.Name = "groupBox8";
@@ -64,48 +64,48 @@
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "活动信息";
             // 
-            // button27
+            // btnDelete
             // 
-            this.button27.Location = new System.Drawing.Point(64, 262);
-            this.button27.Name = "button27";
-            this.button27.Size = new System.Drawing.Size(192, 50);
-            this.button27.TabIndex = 15;
-            this.button27.Text = "移除活动";
-            this.button27.UseVisualStyleBackColor = true;
+            this.btnDelete.Location = new System.Drawing.Point(64, 262);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(242, 50);
+            this.btnDelete.TabIndex = 15;
+            this.btnDelete.Text = "将该教师移除活动";
+            this.btnDelete.UseVisualStyleBackColor = true;
             // 
-            // button22
+            // btnAdd
             // 
-            this.button22.Location = new System.Drawing.Point(64, 514);
-            this.button22.Name = "button22";
-            this.button22.Size = new System.Drawing.Size(192, 50);
-            this.button22.TabIndex = 13;
-            this.button22.Text = "添加活动...";
-            this.button22.UseVisualStyleBackColor = true;
+            this.btnAdd.Location = new System.Drawing.Point(64, 514);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(242, 50);
+            this.btnAdd.TabIndex = 13;
+            this.btnAdd.Text = "添加活动...";
+            this.btnAdd.UseVisualStyleBackColor = true;
             // 
-            // button21
+            // btnAddOcc
             // 
-            this.button21.Location = new System.Drawing.Point(64, 430);
-            this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(192, 50);
-            this.button21.TabIndex = 12;
-            this.button21.Text = "添加任职";
-            this.button21.UseVisualStyleBackColor = true;
+            this.btnAddOcc.Location = new System.Drawing.Point(64, 430);
+            this.btnAddOcc.Name = "btnAddOcc";
+            this.btnAddOcc.Size = new System.Drawing.Size(242, 50);
+            this.btnAddOcc.TabIndex = 12;
+            this.btnAddOcc.Text = "添加任职";
+            this.btnAddOcc.UseVisualStyleBackColor = true;
             // 
-            // button20
+            // btnAddMon
             // 
-            this.button20.Location = new System.Drawing.Point(64, 344);
-            this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(192, 50);
-            this.button20.TabIndex = 11;
-            this.button20.Text = "添加监考";
-            this.button20.UseVisualStyleBackColor = true;
+            this.btnAddMon.Location = new System.Drawing.Point(64, 344);
+            this.btnAddMon.Name = "btnAddMon";
+            this.btnAddMon.Size = new System.Drawing.Size(242, 50);
+            this.btnAddMon.TabIndex = 11;
+            this.btnAddMon.Text = "添加监考";
+            this.btnAddMon.UseVisualStyleBackColor = true;
             // 
-            // textBox17
+            // tbxType
             // 
-            this.textBox17.Location = new System.Drawing.Point(185, 168);
-            this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(301, 35);
-            this.textBox17.TabIndex = 5;
+            this.tbxType.Location = new System.Drawing.Point(185, 168);
+            this.tbxType.Name = "tbxType";
+            this.tbxType.Size = new System.Drawing.Size(301, 35);
+            this.tbxType.TabIndex = 5;
             // 
             // label24
             // 
@@ -116,12 +116,12 @@
             this.label24.TabIndex = 4;
             this.label24.Text = "类型";
             // 
-            // textBox16
+            // tbxValue
             // 
-            this.textBox16.Location = new System.Drawing.Point(185, 116);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(301, 35);
-            this.textBox16.TabIndex = 3;
+            this.tbxValue.Location = new System.Drawing.Point(185, 116);
+            this.tbxValue.Name = "tbxValue";
+            this.tbxValue.Size = new System.Drawing.Size(301, 35);
+            this.tbxValue.TabIndex = 3;
             // 
             // label23
             // 
@@ -132,12 +132,12 @@
             this.label23.TabIndex = 2;
             this.label23.Text = "课时";
             // 
-            // textBox15
+            // tbxName
             // 
-            this.textBox15.Location = new System.Drawing.Point(185, 61);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(301, 35);
-            this.textBox15.TabIndex = 1;
+            this.tbxName.Location = new System.Drawing.Point(185, 61);
+            this.tbxName.Name = "tbxName";
+            this.tbxName.Size = new System.Drawing.Size(301, 35);
+            this.tbxName.TabIndex = 1;
             // 
             // label22
             // 
@@ -150,7 +150,7 @@
             // 
             // groupBox7
             // 
-            this.groupBox7.Controls.Add(this.listBox3);
+            this.groupBox7.Controls.Add(this.lstTeachers);
             this.groupBox7.Location = new System.Drawing.Point(44, 47);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(373, 677);
@@ -158,14 +158,14 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "教师的活动列表";
             // 
-            // listBox3
+            // lstTeachers
             // 
-            this.listBox3.FormattingEnabled = true;
-            this.listBox3.ItemHeight = 24;
-            this.listBox3.Location = new System.Drawing.Point(40, 64);
-            this.listBox3.Name = "listBox3";
-            this.listBox3.Size = new System.Drawing.Size(270, 556);
-            this.listBox3.TabIndex = 5;
+            this.lstTeachers.FormattingEnabled = true;
+            this.lstTeachers.ItemHeight = 24;
+            this.lstTeachers.Location = new System.Drawing.Point(40, 64);
+            this.lstTeachers.Name = "lstTeachers";
+            this.lstTeachers.Size = new System.Drawing.Size(270, 556);
+            this.lstTeachers.TabIndex = 5;
             // 
             // TeacherActivity
             // 
@@ -186,17 +186,17 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.Button button27;
-        private System.Windows.Forms.Button button22;
-        private System.Windows.Forms.Button button21;
-        private System.Windows.Forms.Button button20;
-        private System.Windows.Forms.TextBox textBox17;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnAddOcc;
+        private System.Windows.Forms.Button btnAddMon;
+        private System.Windows.Forms.TextBox tbxType;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.TextBox textBox16;
+        private System.Windows.Forms.TextBox tbxValue;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TextBox textBox15;
+        private System.Windows.Forms.TextBox tbxName;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.ListBox listBox3;
+        private System.Windows.Forms.ListBox lstTeachers;
     }
 }
