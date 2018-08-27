@@ -39,5 +39,15 @@ namespace SalaryCalcWF
             window.Show();
                
         }
+
+        private void btnInput_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLessonA_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

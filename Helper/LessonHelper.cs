@@ -311,6 +311,7 @@ namespace Helper
                     Name = teacherName
                 };
                 context.Teachers.Add(teacher);
+                Save();
             }
             return teacher;
         }
@@ -361,6 +362,7 @@ namespace Helper
                     Grade = grade
                 };
                 context.Classes.Add(schoolClass);
+                Save();
             }
             return schoolClass;
         }
@@ -375,22 +377,47 @@ namespace Helper
         public LessonResult GetLessonType(string name,int grade)
         {
             //先看看有多慢吧。
-            var nametype = context.NameTypes.FirstOrDefault(o => (o.Name == name && o.Grade == grade));
-            if (nametype == null)
-                return LessonResult.Error("NameType对应表中找不到课程对应的类型。");
-            var type = context.LessonTypes.FirstOrDefault(o => o.Type == nametype.LessonTypeEnum);
+            var type = context.LessonTypes.FirstOrDefault(o => (o.LessonName == name && o.Grade == grade));
+            if (type == null)
+                return LessonResult.Error("LessonType对应表中找不到课程对应的类型。");
             if(type==null)
             {
                 context.LessonTypes.Add(new LessonType
                 {
                     DefaultValue = 1,//默认1课时
-                    Price = GetPrice(nametype.LessonTypeEnum),
-                    Name = nametype.LessonTypeEnum.ToString(),//单元测试一下这个tostring是什么样子的.
-                    Type = nametype.LessonTypeEnum
+                    Price = GetPrice(type.Type),
+                    LessonName = name,//单元测试一下这个tostring是什么样子的.
+                    Type = type.Type
                 });
                 Save();
             }
             return LessonResult.Success(type);
+        }
+
+        public LessonResult GetTypeByEnum(LessonTypeEnum en)
+        {
+            var types = context.LessonTypes.Where(o => o.Type == en);
+            return LessonResult.Success(types);
+        }
+        
+        
+        public LessonTypeEnum LetterToEnum(string letter)
+        {
+            switch (letter)
+            {
+                case "A":
+                    return LessonTypeEnum.A;
+                case "B":
+                    return LessonTypeEnum.B;
+                case "C":
+                    return LessonTypeEnum.C;
+                case "E":
+                    return LessonTypeEnum.Evening;
+                case "M":
+                    return LessonTypeEnum.Morning;
+                default:
+                    return LessonTypeEnum.D;
+            }
         }
 
         public double GetPrice(LessonTypeEnum type)

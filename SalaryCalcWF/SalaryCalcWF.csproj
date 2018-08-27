@@ -69,6 +69,12 @@
     <Compile Include="ClassLesson.Designer.cs">
       <DependentUpon>ClassLesson.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditType.Designer.cs">
+      <DependentUpon>EditType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Lessons.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +113,9 @@
     <EmbeddedResource Include="ClassLesson.resx">
       <DependentUpon>ClassLesson.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditType.resx">
+      <DependentUpon>EditType.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Lessons.resx">
       <DependentUpon>Lessons.cs</DependentUpon>
     </EmbeddedResource>
@@ -140,6 +149,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Helper\Helper.csproj">
+      <Project>{1e4cf96c-43b4-4382-9298-81cca640d805}</Project>
+      <Name>Helper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{6e1f5df6-86a3-4cd0-ad5c-381d415f689a}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

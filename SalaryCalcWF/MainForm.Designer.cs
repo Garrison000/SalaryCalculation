@@ -60,6 +60,7 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.dgvActivities = new System.Windows.Forms.DataGridView();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.btnActType = new System.Windows.Forms.Button();
             this.btnActOff = new System.Windows.Forms.Button();
             this.btnActClear = new System.Windows.Forms.Button();
             this.btnActFilter = new System.Windows.Forms.Button();
@@ -136,6 +137,7 @@
             this.tbxPriceA = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblTerm = new System.Windows.Forms.LinkLabel();
             this.tbxWeeks = new System.Windows.Forms.TextBox();
             this.lblWeeks = new System.Windows.Forms.Label();
             this.tbxTerm = new System.Windows.Forms.TextBox();
@@ -174,8 +176,6 @@
             this.基本信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.活动ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.课程ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnActType = new System.Windows.Forms.Button();
-            this.lblTerm = new System.Windows.Forms.LinkLabel();
             this.tipTerm = new System.Windows.Forms.ToolTip(this.components);
             this.pgeSalary.SuspendLayout();
             this.groupBox9.SuspendLayout();
@@ -543,6 +543,15 @@
             this.groupBox8.TabIndex = 8;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "活动信息";
+            // 
+            // btnActType
+            // 
+            this.btnActType.Location = new System.Drawing.Point(493, 168);
+            this.btnActType.Name = "btnActType";
+            this.btnActType.Size = new System.Drawing.Size(63, 35);
+            this.btnActType.TabIndex = 20;
+            this.btnActType.Text = "...";
+            this.btnActType.UseVisualStyleBackColor = true;
             // 
             // btnActOff
             // 
@@ -1125,6 +1134,7 @@
             this.btnLessonA.TabIndex = 18;
             this.btnLessonA.Text = "课程";
             this.btnLessonA.UseVisualStyleBackColor = true;
+            this.btnLessonA.Click += new System.EventHandler(this.btnLessonA_Click);
             // 
             // label14
             // 
@@ -1289,6 +1299,17 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "学期设置";
             // 
+            // lblTerm
+            // 
+            this.lblTerm.AutoSize = true;
+            this.lblTerm.Location = new System.Drawing.Point(74, 52);
+            this.lblTerm.Name = "lblTerm";
+            this.lblTerm.Size = new System.Drawing.Size(106, 24);
+            this.lblTerm.TabIndex = 4;
+            this.lblTerm.TabStop = true;
+            this.lblTerm.Text = "当前学期";
+            this.tipTerm.SetToolTip(this.lblTerm, "年份+1或2，如2018上学期输入20181");
+            // 
             // tbxWeeks
             // 
             this.tbxWeeks.Location = new System.Drawing.Point(213, 104);
@@ -1340,6 +1361,7 @@
             this.btnInput.TabIndex = 0;
             this.btnInput.Text = "导入课程";
             this.btnInput.UseVisualStyleBackColor = true;
+            this.btnInput.Click += new System.EventHandler(this.btnInput_Click);
             // 
             // tabControl
             // 
@@ -1604,19 +1626,19 @@
             // 导入课程ToolStripMenuItem
             // 
             this.导入课程ToolStripMenuItem.Name = "导入课程ToolStripMenuItem";
-            this.导入课程ToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
+            this.导入课程ToolStripMenuItem.Size = new System.Drawing.Size(208, 38);
             this.导入课程ToolStripMenuItem.Text = "导入课程";
             // 
             // 设置参数ToolStripMenuItem
             // 
             this.设置参数ToolStripMenuItem.Name = "设置参数ToolStripMenuItem";
-            this.设置参数ToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
+            this.设置参数ToolStripMenuItem.Size = new System.Drawing.Size(208, 38);
             this.设置参数ToolStripMenuItem.Text = "设置参数";
             // 
             // 导出结果ToolStripMenuItem
             // 
             this.导出结果ToolStripMenuItem.Name = "导出结果ToolStripMenuItem";
-            this.导出结果ToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
+            this.导出结果ToolStripMenuItem.Size = new System.Drawing.Size(208, 38);
             this.导出结果ToolStripMenuItem.Text = "导出结果";
             // 
             // 教师ToolStripMenuItem
@@ -1646,26 +1668,6 @@
             this.课程ToolStripMenuItem.Name = "课程ToolStripMenuItem";
             this.课程ToolStripMenuItem.Size = new System.Drawing.Size(208, 38);
             this.课程ToolStripMenuItem.Text = "查看课程";
-            // 
-            // btnActType
-            // 
-            this.btnActType.Location = new System.Drawing.Point(493, 168);
-            this.btnActType.Name = "btnActType";
-            this.btnActType.Size = new System.Drawing.Size(63, 35);
-            this.btnActType.TabIndex = 20;
-            this.btnActType.Text = "...";
-            this.btnActType.UseVisualStyleBackColor = true;
-            // 
-            // lblTerm
-            // 
-            this.lblTerm.AutoSize = true;
-            this.lblTerm.Location = new System.Drawing.Point(74, 52);
-            this.lblTerm.Name = "lblTerm";
-            this.lblTerm.Size = new System.Drawing.Size(106, 24);
-            this.lblTerm.TabIndex = 4;
-            this.lblTerm.TabStop = true;
-            this.lblTerm.Text = "当前学期";
-            this.tipTerm.SetToolTip(this.lblTerm, "年份+1或2，如2018上学期输入20181");
             // 
             // tipTerm
             // 

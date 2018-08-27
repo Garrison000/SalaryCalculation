@@ -11,8 +11,10 @@ namespace Model
     {
         public long ID { get; set; }
         public LessonTypeEnum Type { get; set; }
-        public string Name { get; set; }
-        public int DefaultValue { get; set; }
+        public string TypeName { get; set; }
+        public string LessonName { get; set; }
+        public int Grade { get; set; }
+        public double DefaultValue { get; set; }
         public double Price { get; set; }
         public virtual List<Lesson> Lessons { get; set; }
     }
@@ -35,6 +37,8 @@ namespace Model
         D,
         Morning,
         Evening,
+        Mon1,
+        Mon2,
         Over,
         Other
     }

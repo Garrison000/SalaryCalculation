@@ -181,6 +181,7 @@ namespace Helper
                 }
             }
             context.Activities.Remove(activity);
+            Save();
             return ActivityResult.Success();
         }
 
