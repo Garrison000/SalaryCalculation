@@ -16,6 +16,8 @@ namespace Model
         public double Price_D { get; set; }
         public double Price_Morning { get; set; }
         public double Price_Evening { get; set; }
+        public double Price_Mon1 { get; set; }
+        public double Price_Mon2 { get; set; }
         public double Price_Over { get; set; }
         public int Term { get; set; }
         public int TotalWeeks { get; set; }

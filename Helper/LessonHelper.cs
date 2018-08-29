@@ -516,6 +516,31 @@ namespace Helper
             }
             return LessonResult.Success();
         }
+        public LessonResult SaveConstants(Constants constants)
+        {
+            if(constants==null)
+            {
+                return LessonResult.Error("constants实例没有正确传递。请尝试重新开启程序。");
+            }
+            var old = context.Constants.First();
+            old.Duty1 = constants.Duty1;
+            old.Duty2 = constants.Duty2;
+            old.Duty3 = constants.Duty3;
+            old.Price_A = constants.Price_A;
+            old.Price_B = constants.Price_B;
+            old.Price_C = constants.Price_C;
+            old.Price_D = constants.Price_D;
+            old.Price_Evening = constants.Price_Evening;
+            old.Price_Mon1 = constants.Price_Mon1;
+            old.Price_Mon2 = constants.Price_Mon2;
+            old.Price_Over = constants.Over_Price;
+            old.TotalWeeks = constants.TotalWeeks;
+            old.Price_Morning = constants.Price_Morning;
+            old.Over_Price = constants.Over_Price;
+            old.Over_Span = constants.Over_Span;
+            Save();
+            return LessonResult.Success();
+        }
 
         public void Save()
         {
