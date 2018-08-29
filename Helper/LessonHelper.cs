@@ -398,8 +398,7 @@ namespace Helper
         {
             var types = context.LessonTypes.Where(o => o.Type == en);
             return LessonResult.Success(types);
-        }
-        
+        }      
         
         public LessonTypeEnum LetterToEnum(string letter)
         {
@@ -415,9 +414,58 @@ namespace Helper
                     return LessonTypeEnum.Evening;
                 case "M":
                     return LessonTypeEnum.Morning;
+                case "D":
                 default:
                     return LessonTypeEnum.D;
             }
+        }
+
+        public LessonResult AddLessonType(string name, double price, double value, int grade)
+        {
+            if (name == "" || price == 0 || value == 0 || grade == 0) 
+            {
+                return LessonResult.Error("请输入所有字段。");
+            }
+            if (context.LessonTypes.Where(o => o.LessonName == name && o.Grade == grade).Count() != 0) 
+            {
+                return LessonResult.Error("相同的规则已经存在，请检查规则列表。");
+            }
+            var type = new LessonType
+            {
+                LessonName = name,
+                Grade = grade,
+                DefaultValue = value,
+                Price = price
+            };
+            context.LessonTypes.Add(type);
+            Save();
+            return LessonResult.Success();   
+        }
+
+        public LessonResult EditLessonType(LessonType type, string name, double price, double value, int grade)
+        {
+            if (name == "" || price == 0 || value == 0 || grade == 0)
+            {
+                return LessonResult.Error("请输入所有字段。");
+            }
+            type.LessonName = name;
+            type.Price = price;
+            type.DefaultValue = value;
+            type.Grade = grade;
+            Save();//默认type是已经attach的
+            return LessonResult.Success();
+        }
+
+        public LessonResult DeleteLEssonType(LessonType type)
+        {
+            var typeInDb = context.LessonTypes.FirstOrDefault(o => o.ID == type.ID);
+            if (typeInDb==null)
+            {
+                return LessonResult.Error("数据库中不存在此规则，该规则可能已被删除");
+            }
+            context.LessonTypes.Remove(typeInDb);
+            Save();
+            return LessonResult.Success();
         }
 
         public double GetPrice(LessonTypeEnum type)
@@ -442,6 +490,31 @@ namespace Helper
                 default:
                     return 0;
             }
+        }
+
+        public LessonResult GetConstants()
+        {
+            var constants = context.Constants.First();
+            if(constants == null)
+            {
+                constants = new Constants
+                {
+                    Duty1 = 12,
+                    Duty2 = 14,
+                    Duty3 = 16,
+                    Price_A = 26,
+                    Price_B = 25,
+                    Price_C = 23,
+                    Price_D = 20,
+                    Price_Morning = 23,
+                    Price_Evening = 30,
+                    Over_Price = 10,
+                    Over_Span = 10 * 4
+                };
+                context.Constants.Add(constants);
+                Save();
+            }
+            return LessonResult.Success();
         }
 
         public void Save()
