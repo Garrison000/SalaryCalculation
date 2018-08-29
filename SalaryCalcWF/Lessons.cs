@@ -15,14 +15,25 @@ namespace SalaryCalcWF
     public partial class Lessons : Form//有必要单例。
     {
         private static Lessons window;
+        private static string savedSort;
         private LessonHelper lhelper;
-        public Lessons GetInstance(string sort)
+        public static Lessons GetInstance(string sort)
         {
             if (window == null)
             {
                 window = new Lessons(sort);
             }
+            if (sort==savedSort)
+            {
+                return window;
+            }
+            else
+            {
+                window.Close();
+                window = new Lessons(sort);
+            }
             return window;
+            
         }
         public Lessons(string sort)
         {
@@ -41,6 +52,15 @@ namespace SalaryCalcWF
         private void btnAdd_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("确认要删除该规则吗？", "注意", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(result==DialogResult.Yes)
+            {
+
+            }
         }
     }
 }

@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="ActivityHelper.cs" />
     <Compile Include="ActivityResult.cs" />
+    <Compile Include="ConstantsHelper.cs" />
     <Compile Include="ExcelInHelper.cs" />
     <Compile Include="ExcelOutHelper.cs" />
     <Compile Include="LessonHelper.cs" />
