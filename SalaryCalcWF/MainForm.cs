@@ -114,5 +114,11 @@ namespace SalaryCalcWF
             //检查输入
             SaveConstants();
         }
+
+        private void btnRecover_Click(object sender, EventArgs e)
+        {
+            var result = lessonHelper.RecoverDefaultConstants();
+            constants = result.Object as Constants;
+        }
     }
 }

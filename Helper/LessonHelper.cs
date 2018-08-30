@@ -506,15 +506,47 @@ namespace Helper
                     Price_B = 25,
                     Price_C = 23,
                     Price_D = 20,
+                    Price_Over = 10,
                     Price_Morning = 23,
                     Price_Evening = 30,
+                    Price_Mon1 = 0,
+                    Price_Mon2 = 0,
                     Over_Price = 10,
                     Over_Span = 10 * 4
                 };
                 context.Constants.Add(constants);
                 Save();
             }
-            return LessonResult.Success();
+            return LessonResult.Success(constants);
+        }
+
+        public LessonResult RecoverDefaultConstants()
+        {
+            var constants = context.Constants.First();
+            if(constants == null)
+            {
+                var result = GetConstants();
+                constants = result.Object as Constants;
+                if (constants == null)
+                    return LessonResult.Error("向数据库中创建Constants记录时出错。");
+            }
+            constants.Duty1 = 12;
+            constants.Duty2 = 14;
+            constants.Duty3 = 16;
+            constants.Price_A = 26;
+            constants.Price_B = 25;
+            constants.Price_C = 23;
+            constants.Price_D = 20;
+            constants.Price_Evening = 30;
+            constants.Price_Mon1 = 0;
+            constants.Price_Mon2 = 0;
+            constants.Price_Over = 10;
+            constants.TotalWeeks = 20;
+            constants.Price_Morning = 23;
+            constants.Over_Price = 10;
+            constants.Over_Span = 40;
+            Save();
+            return LessonResult.Success(constants);
         }
         public LessonResult SaveConstants(Constants constants)
         {

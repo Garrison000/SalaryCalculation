@@ -195,8 +195,8 @@
             // 文件ToolStripMenuItem
             // 
             this.文件ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.导入课程ToolStripMenuItem,
             this.设置参数ToolStripMenuItem,
+            this.导入课程ToolStripMenuItem,
             this.导出结果ToolStripMenuItem});
             this.文件ToolStripMenuItem.Name = "文件ToolStripMenuItem";
             this.文件ToolStripMenuItem.Size = new System.Drawing.Size(74, 35);
@@ -955,6 +955,7 @@
             this.btnRecover.TabIndex = 9;
             this.btnRecover.Text = "恢复默认";
             this.btnRecover.UseVisualStyleBackColor = true;
+            this.btnRecover.Click += new System.EventHandler(this.btnRecover_Click);
             // 
             // btnSave
             // 
