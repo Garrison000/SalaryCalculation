@@ -8,7 +8,7 @@ using Model;
 
 namespace Helper
 {
-    class ExcelInHelper
+    public class ExcelInHelper
     {
         private string FileName { get; set; }
         private Application app { get; set; }
