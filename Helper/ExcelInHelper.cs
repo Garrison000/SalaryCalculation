@@ -23,43 +23,47 @@ namespace Helper
             //db = DatabaseContext.GetInstance();
             string[] str = ExcelToString(FileName);
             LessonHelper lh = new LessonHelper();
-            for(int i=0; ;i+=11)//循环一次一个班，写得极丑...
+            for(int i=0; ;i+=12)//循环一次一个班，写得极丑...
             {
+                int OrderNum1=1,OrderNum2,Order;//num1是周，num2是第几节课
                 if(str[i]=="")//全部录完了就跳出循环
                 {
                     break;
                 }
                 string @class = str[i];
-                for(int j=1;j<=10;j++)
+                for(int j=1;j<=11;j++)
                 {
                     if(str[i+j]=="")//怕出bug就先检验一下
                     {
                         continue;
                     }
-                    string[] Class = str[i+j].Split('|');//每节课
-                    foreach(string item in Class) //item 单独的每节课
+                    OrderNum2 = j - 1;
+                    string[] Class = str[i+j].Split('|');//所有课
+                    foreach(string item in Class) //item 是单独的每节课
                     {
+                        Order = OrderNum1 * 100 + OrderNum2;
+                        OrderNum1++;
                         string[] temp;
-                        if(item.Contains("+"))//有问题，要改的地方
+                        if(item.Contains("+"))
                         {
                             temp = item.Split('+');
                             string[] cls1 = temp[0].Split('\n');
                             string[] cls2 = temp[1].Split('\n');
-                            lh.InputLesson(cls1[0], cls1[1], @class, new Time { Term = (int)TimeType.Default, Order = (int)TimeType.Default, Week = (int)TimeType.Default });
-                            lh.InputLesson(cls2[0], cls2[1], @class, new Time { Term = (int)TimeType.Default, Order = (int)TimeType.Default, Week = (int)TimeType.Default });
+                            lh.InputLesson(cls1[0], cls1[1], @class, new Time { Term = (int)TimeType.Default, Order = Order, Week = (int)TimeType.Default }, (int)TimeType.Default, 0.5);
+                            lh.InputLesson(cls2[0], cls2[1], @class, new Time { Term = (int)TimeType.Default, Order = Order, Week = (int)TimeType.Default }, (int)TimeType.Default, 0.5);
                         }
-                        else if(item.Contains("-"))//有问题，要改的地方
+                        else if(item.Contains("-"))
                         {
                             temp = item.Split('-');
                             string[] cls1 = temp[0].Split('\n');
                             string[] cls2 = temp[1].Split('\n');
-                            lh.InputLesson(cls1[0], cls1[1], @class, new Time { Term = (int)TimeType.Default, Order = (int)TimeType.Default, Week = (int)TimeType.Sigle });
-                            lh.InputLesson(cls2[0], cls2[1], @class, new Time { Term = (int)TimeType.Default, Order = (int)TimeType.Default, Week = (int)TimeType.Double });
+                            lh.InputLesson(cls1[0], cls1[1], @class, new Time { Term = (int)TimeType.Default, Order = Order, Week = (int)TimeType.Sigle },(int)TimeType.Default,0.5);
+                            lh.InputLesson(cls2[0], cls2[1], @class, new Time { Term = (int)TimeType.Default, Order = Order, Week = (int)TimeType.Double }, (int)TimeType.Default, 0.5);
                         }
                         else
                         {
                             temp = item.Split('\n');
-                            lh.InputLesson(temp[0], temp[1], @class, new Time { Term = (int)TimeType.Default, Order = (int)TimeType.Default, Week = (int)TimeType.Default });
+                            lh.InputLesson(temp[0], temp[1], @class, new Time { Term = (int)TimeType.Default, Order = Order, Week = (int)TimeType.Default }, (int)TimeType.Default, 0.5);
                         }
                     }
                 }
@@ -72,7 +76,7 @@ namespace Helper
             Open(FileName);
             fs = GetAllContent();
             return fs;
-            ///返回的字符串格式  其中一个班的课表占11个字符串
+            ///返回的字符串格式  其中一个班的课表占12个字符串
             ///str0：                XXX班课表
             ///str1：    //早自习    "XX|XX|..." or ""
             ///str2：    //第一节
@@ -82,8 +86,9 @@ namespace Helper
             ///str6：    //第五节
             ///str7：    //第六节
             ///str8：    //第七节
-            ///str9：    //晚自习
-            ///str10：   //晚自习
+            ///str9：    //第八节
+            ///str10：    //晚自习
+            ///str11：   //晚自习
         }
 
         private void Open(string filename)
