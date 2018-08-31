@@ -178,7 +178,8 @@ namespace SalaryCalcWF
 
         private void lbxCalcTeacher_SelectedValueChanged(object sender, EventArgs e)
         {
-            selectedTeacher = lbxCalcTeacher.SelectedItems[0] as Teacher;
+            if (lbxCalcTeacher.SelectedItems.Count != 0)
+                selectedTeacher = lbxCalcTeacher.SelectedItems[0] as Teacher;
         }
 
         private void rbtPrimary_CheckedChanged(object sender, EventArgs e)
@@ -188,7 +189,8 @@ namespace SalaryCalcWF
 
         private void lbxTeachers_SelectedValueChanged(object sender, EventArgs e)
         {
-            selectedTeacher = lbxCalcTeacher.SelectedItems[0] as Teacher;
+            if(lbxCalcTeacher.SelectedItems.Count!=0)
+                selectedTeacher = lbxCalcTeacher.SelectedItems[0] as Teacher;
         }
     }
 }
