@@ -21,6 +21,19 @@ namespace SalaryCalcWF
             InitializeComponent();
             lessonHelper = LessonHelper.GetInstance();
             QueryConstants();
+            tbxPriceA.DataBindings.Add("Text", constants, "Price_A");
+            tbxPriceB.DataBindings.Add("Text", constants, "Price_B");
+            tbxPriceC.DataBindings.Add("Text", constants, "Price_C");
+            tbxPriceD.DataBindings.Add("Text", constants, "Price_D");
+            tbxPriceEve.DataBindings.Add("Text", constants, "Price_Evening");
+            tbxPriceMon1.DataBindings.Add("Text", constants, "Price_Mon1");
+            tbxPriceMon2.DataBindings.Add("Text", constants, "Price_Mon2");
+            tbxPriceMor.DataBindings.Add("Text", constants, "Price_Morning");
+            tbxTerm.DataBindings.Add("Text", constants, "Term");
+            tbxWeeks.DataBindings.Add("Text", constants, "TotalWeeks");
+            tbxDuty1.DataBindings.Add("Text", constants, "Duty1");
+            tbxDuty2.DataBindings.Add("Text", constants, "Duty2");
+            tbxDuty3.DataBindings.Add("Text", constants, "Duty3");
         }
 
         private void QueryConstants()
@@ -28,17 +41,19 @@ namespace SalaryCalcWF
             var result = lessonHelper.GetConstants();
             constants = result.Object as Constants;
         }
-        private void SaveConstants() { }
+        private void SaveConstants()
+        {
+            var result = lessonHelper.SaveConstants(constants);
+            if(!result.Succeeded)
+            {
+                MessageBox.Show(string.Join(",", result.Info));
+            }
+        }
 
         private void btnEditTeacher_Click(object sender, EventArgs e)
         {
             var window = new TeacherManage();
             window.Show();
-        }
-
-        private void groupBox7_Enter(object sender, EventArgs e)
-        {
-
         }
 
         private void button14_Click(object sender, EventArgs e)
@@ -98,6 +113,12 @@ namespace SalaryCalcWF
         {
             //检查输入
             SaveConstants();
+        }
+
+        private void btnRecover_Click(object sender, EventArgs e)
+        {
+            var result = lessonHelper.RecoverDefaultConstants();
+            constants = result.Object as Constants;
         }
     }
 }
