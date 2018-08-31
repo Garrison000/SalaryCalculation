@@ -16,5 +16,10 @@ namespace SalaryCalcWF
         {
             InitializeComponent();
         }
+
+        private void cbxActType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

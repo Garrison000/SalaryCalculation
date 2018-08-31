@@ -15,20 +15,85 @@ namespace Helper
         private Workbooks wbs { get; set; }
         private Workbook wb { get; set; }
         private Worksheet ws { get; set; }
-        private DatabaseContext db { get; set; }
+        //private DatabaseContext db { get; set; }
+        const int StrNum  = 5000;
 
-        public string[] ExcelIn(string FileName)
+        public void ExcelIn(string FileName)
         {
-            string[] fs = new string[1000];
+            //db = DatabaseContext.GetInstance();
+            string[] str = ExcelToString(FileName);
+            LessonHelper lh = new LessonHelper();
+            for(int i=0; ;i+=12)//循环一次一个班，写得极丑...
+            {
+                int OrderNum1=1,OrderNum2,Order;//num1是周，num2是第几节课
+                if(str[i]=="")//全部录完了就跳出循环
+                {
+                    break;
+                }
+                string @class = str[i];
+                for(int j=1;j<=11;j++)
+                {
+                    if(str[i+j]=="")//怕出bug就先检验一下
+                    {
+                        continue;
+                    }
+                    OrderNum2 = j - 1;
+                    string[] Class = str[i+j].Split('|');//所有课
+                    foreach(string item in Class) //item 是单独的每节课
+                    {
+                        Order = OrderNum1 * 100 + OrderNum2;
+                        OrderNum1++;
+                        string[] temp;
+                        if(item.Contains("+"))
+                        {
+                            temp = item.Split('+');
+                            string[] cls1 = temp[0].Split('\n');
+                            string[] cls2 = temp[1].Split('\n');
+                            lh.InputLesson(cls1[0], cls1[1], @class, new Time { Term = (int)TimeType.Default, Order = Order, Week = (int)TimeType.Default }, (int)TimeType.Default, 0.5);
+                            lh.InputLesson(cls2[0], cls2[1], @class, new Time { Term = (int)TimeType.Default, Order = Order, Week = (int)TimeType.Default }, (int)TimeType.Default, 0.5);
+                        }
+                        else if(item.Contains("-"))
+                        {
+                            temp = item.Split('-');
+                            string[] cls1 = temp[0].Split('\n');
+                            string[] cls2 = temp[1].Split('\n');
+                            lh.InputLesson(cls1[0], cls1[1], @class, new Time { Term = (int)TimeType.Default, Order = Order, Week = (int)TimeType.Sigle },(int)TimeType.Default,0.5);
+                            lh.InputLesson(cls2[0], cls2[1], @class, new Time { Term = (int)TimeType.Default, Order = Order, Week = (int)TimeType.Double }, (int)TimeType.Default, 0.5);
+                        }
+                        else
+                        {
+                            temp = item.Split('\n');
+                            lh.InputLesson(temp[0], temp[1], @class, new Time { Term = (int)TimeType.Default, Order = Order, Week = (int)TimeType.Default }, (int)TimeType.Default, 0.5);
+                        }
+                    }
+                }
+            }
+        }
+
+        private string[] ExcelToString(string FileName)
+        {
+            string[] fs = new string[StrNum];
             Open(FileName);
             fs = GetAllContent();
             return fs;
+            ///返回的字符串格式  其中一个班的课表占12个字符串
+            ///str0：                XXX班课表
+            ///str1：    //早自习    "XX|XX|..." or ""
+            ///str2：    //第一节
+            ///str3：    //第二节
+            ///str4：    //第三节
+            ///str5：    //第四节
+            ///str6：    //第五节
+            ///str7：    //第六节
+            ///str8：    //第七节
+            ///str9：    //第八节
+            ///str10：    //晚自习
+            ///str11：   //晚自习
         }
 
         private void Open(string filename)
         {
             FileName = filename;
-            db = DatabaseContext.GetInstance();
             app = new Application();
             wbs = app.Workbooks;
             wb = wbs.Add(filename);
@@ -49,11 +114,11 @@ namespace Helper
             }
             if(GetCell(ws.Cells[row+1,column])!="")
             {
-                s = s + "+" + ws.Cells[row + 1, column];
+                s = s + "+" + ws.Cells[row + 1, column]; //一个课时两节课
             }
             if(GetCell(ws.Cells[row,column+1])!="")
             {
-                s = s + "-" + ws.Cells[row, column + 1];
+                s = s + "-" + ws.Cells[row, column + 1];  //晚自习单双周轮流
             }
             return s;
         }
@@ -61,8 +126,8 @@ namespace Helper
         private string GetRowContent(int row)
         {
             string s;
-            s = GetString(ws.Cells[row,2],row,2);
-            if(GetString(ws.Cells[row,4],row,4)=="")
+            s = GetString(ws.Cells[row,4],row,4);
+            if(s=="")
             {
                 return s;
             }
@@ -78,7 +143,7 @@ namespace Helper
 
         private string[] GetAllContent()
         {
-            string[] fs = new string[1000];
+            string[] fs = new string[StrNum];
             int strIndex = 0;
             for(int row=3; ;row+=34)
             {
