@@ -211,6 +211,24 @@ namespace Helper
             return ActivityResult.Success();
         }
 
+        public string TypeEnumToString(ActivityTypeEnum e)
+        {
+            switch (e)
+            {
+                case ActivityTypeEnum.Affairs:
+                    return "图书馆";
+                case ActivityTypeEnum.ClassAdviser:
+                    return "担任班主任";
+                case ActivityTypeEnum.Library:
+                    return "图书管理";
+                case ActivityTypeEnum.Monitoring:
+                    return "监考";
+                case ActivityTypeEnum.News:
+                    return "新闻组或宣传组成员";
+            }
+            return "";
+        }
+
         public void Save()
         {
             try

@@ -61,9 +61,7 @@ namespace SalaryCalcWF
                 {
                     MessageBox.Show("移除成功。");
                 }
-                
             }
-
         }
 
         private void btnAddMon_Click(object sender, EventArgs e)

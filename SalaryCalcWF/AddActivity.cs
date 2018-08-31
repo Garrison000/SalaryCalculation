@@ -12,9 +12,16 @@ namespace SalaryCalcWF
 {
     public partial class AddActivity : Form
     {
-        public AddActivity()
+        public AddActivity(string sort="")
         {
             InitializeComponent();
+            switch (sort)
+            {
+                case "":
+                    
+                default:
+                    break;
+            }
         }
 
         private void cbxActType_SelectedIndexChanged(object sender, EventArgs e)
