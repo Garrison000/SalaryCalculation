@@ -32,8 +32,8 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.导入课程ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.设置参数ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.导入课程ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.导出结果ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.教师ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.基本信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -202,17 +202,17 @@
             this.文件ToolStripMenuItem.Size = new System.Drawing.Size(74, 35);
             this.文件ToolStripMenuItem.Text = "文件";
             // 
-            // 导入课程ToolStripMenuItem
-            // 
-            this.导入课程ToolStripMenuItem.Name = "导入课程ToolStripMenuItem";
-            this.导入课程ToolStripMenuItem.Size = new System.Drawing.Size(208, 38);
-            this.导入课程ToolStripMenuItem.Text = "导入课程";
-            // 
             // 设置参数ToolStripMenuItem
             // 
             this.设置参数ToolStripMenuItem.Name = "设置参数ToolStripMenuItem";
             this.设置参数ToolStripMenuItem.Size = new System.Drawing.Size(208, 38);
             this.设置参数ToolStripMenuItem.Text = "设置参数";
+            // 
+            // 导入课程ToolStripMenuItem
+            // 
+            this.导入课程ToolStripMenuItem.Name = "导入课程ToolStripMenuItem";
+            this.导入课程ToolStripMenuItem.Size = new System.Drawing.Size(208, 38);
+            this.导入课程ToolStripMenuItem.Text = "导入课程";
             // 
             // 导出结果ToolStripMenuItem
             // 
@@ -512,6 +512,7 @@
             this.btnCalcSearch.TabIndex = 4;
             this.btnCalcSearch.Text = "查询";
             this.btnCalcSearch.UseVisualStyleBackColor = true;
+            this.btnCalcSearch.Click += new System.EventHandler(this.btnCalcSearch_Click);
             // 
             // tbxCalcSearch
             // 
@@ -520,6 +521,7 @@
             this.tbxCalcSearch.Size = new System.Drawing.Size(203, 35);
             this.tbxCalcSearch.TabIndex = 3;
             this.tbxCalcSearch.Text = "搜索...";
+            this.tbxCalcSearch.Click += new System.EventHandler(this.tbxCalcSearch_Click);
             // 
             // lbxCalcTeacher
             // 
@@ -529,6 +531,7 @@
             this.lbxCalcTeacher.Name = "lbxCalcTeacher";
             this.lbxCalcTeacher.Size = new System.Drawing.Size(203, 340);
             this.lbxCalcTeacher.TabIndex = 0;
+            this.lbxCalcTeacher.SelectedValueChanged += new System.EventHandler(this.lbxCalcTeacher_SelectedValueChanged);
             // 
             // btnCalcJunior
             // 
@@ -891,6 +894,7 @@
             this.btnQuery.TabIndex = 4;
             this.btnQuery.Text = "查询";
             this.btnQuery.UseVisualStyleBackColor = true;
+            this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
             // 
             // tbxSearchTeacher
             // 
@@ -899,6 +903,7 @@
             this.tbxSearchTeacher.Size = new System.Drawing.Size(203, 35);
             this.tbxSearchTeacher.TabIndex = 3;
             this.tbxSearchTeacher.Text = "搜索...";
+            this.tbxSearchTeacher.Click += new System.EventHandler(this.tbxSearchTeacher_Click);
             // 
             // lbxTeachers
             // 
@@ -908,6 +913,7 @@
             this.lbxTeachers.Name = "lbxTeachers";
             this.lbxTeachers.Size = new System.Drawing.Size(203, 340);
             this.lbxTeachers.TabIndex = 0;
+            this.lbxTeachers.SelectedValueChanged += new System.EventHandler(this.lbxTeachers_SelectedValueChanged);
             // 
             // rbtJunior
             // 
@@ -930,6 +936,7 @@
             this.rbtPrimary.TabStop = true;
             this.rbtPrimary.Text = "小学部";
             this.rbtPrimary.UseVisualStyleBackColor = true;
+            this.rbtPrimary.CheckedChanged += new System.EventHandler(this.rbtPrimary_CheckedChanged);
             // 
             // pgeLesson
             // 

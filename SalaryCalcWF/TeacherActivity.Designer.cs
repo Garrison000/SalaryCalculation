@@ -40,7 +40,7 @@
             this.tbxName = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.lstTeachers = new System.Windows.Forms.ListBox();
+            this.lstTeacherActivity = new System.Windows.Forms.ListBox();
             this.groupBox8.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.SuspendLayout();
@@ -66,16 +66,17 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(64, 262);
+            this.btnDelete.Location = new System.Drawing.Point(163, 267);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(242, 50);
             this.btnDelete.TabIndex = 15;
             this.btnDelete.Text = "将该教师移除活动";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(64, 514);
+            this.btnAdd.Location = new System.Drawing.Point(163, 519);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(242, 50);
             this.btnAdd.TabIndex = 13;
@@ -84,7 +85,7 @@
             // 
             // btnAddOcc
             // 
-            this.btnAddOcc.Location = new System.Drawing.Point(64, 430);
+            this.btnAddOcc.Location = new System.Drawing.Point(163, 435);
             this.btnAddOcc.Name = "btnAddOcc";
             this.btnAddOcc.Size = new System.Drawing.Size(242, 50);
             this.btnAddOcc.TabIndex = 12;
@@ -93,17 +94,19 @@
             // 
             // btnAddMon
             // 
-            this.btnAddMon.Location = new System.Drawing.Point(64, 344);
+            this.btnAddMon.Location = new System.Drawing.Point(163, 349);
             this.btnAddMon.Name = "btnAddMon";
             this.btnAddMon.Size = new System.Drawing.Size(242, 50);
             this.btnAddMon.TabIndex = 11;
             this.btnAddMon.Text = "添加监考";
             this.btnAddMon.UseVisualStyleBackColor = true;
+            this.btnAddMon.Click += new System.EventHandler(this.btnAddMon_Click);
             // 
             // tbxType
             // 
             this.tbxType.Location = new System.Drawing.Point(185, 168);
             this.tbxType.Name = "tbxType";
+            this.tbxType.ReadOnly = true;
             this.tbxType.Size = new System.Drawing.Size(301, 35);
             this.tbxType.TabIndex = 5;
             // 
@@ -120,6 +123,7 @@
             // 
             this.tbxValue.Location = new System.Drawing.Point(185, 116);
             this.tbxValue.Name = "tbxValue";
+            this.tbxValue.ReadOnly = true;
             this.tbxValue.Size = new System.Drawing.Size(301, 35);
             this.tbxValue.TabIndex = 3;
             // 
@@ -136,6 +140,7 @@
             // 
             this.tbxName.Location = new System.Drawing.Point(185, 61);
             this.tbxName.Name = "tbxName";
+            this.tbxName.ReadOnly = true;
             this.tbxName.Size = new System.Drawing.Size(301, 35);
             this.tbxName.TabIndex = 1;
             // 
@@ -150,7 +155,7 @@
             // 
             // groupBox7
             // 
-            this.groupBox7.Controls.Add(this.lstTeachers);
+            this.groupBox7.Controls.Add(this.lstTeacherActivity);
             this.groupBox7.Location = new System.Drawing.Point(44, 47);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(373, 677);
@@ -158,14 +163,15 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "教师的活动列表";
             // 
-            // lstTeachers
+            // lstTeacherActivity
             // 
-            this.lstTeachers.FormattingEnabled = true;
-            this.lstTeachers.ItemHeight = 24;
-            this.lstTeachers.Location = new System.Drawing.Point(40, 64);
-            this.lstTeachers.Name = "lstTeachers";
-            this.lstTeachers.Size = new System.Drawing.Size(270, 556);
-            this.lstTeachers.TabIndex = 5;
+            this.lstTeacherActivity.FormattingEnabled = true;
+            this.lstTeacherActivity.ItemHeight = 24;
+            this.lstTeacherActivity.Location = new System.Drawing.Point(40, 64);
+            this.lstTeacherActivity.Name = "lstTeacherActivity";
+            this.lstTeacherActivity.Size = new System.Drawing.Size(270, 556);
+            this.lstTeacherActivity.TabIndex = 5;
+            this.lstTeacherActivity.SelectedValueChanged += new System.EventHandler(this.lstTeacherActivity_SelectedValueChanged);
             // 
             // TeacherActivity
             // 
@@ -197,6 +203,6 @@
         private System.Windows.Forms.TextBox tbxName;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.ListBox lstTeachers;
+        private System.Windows.Forms.ListBox lstTeacherActivity;
     }
 }

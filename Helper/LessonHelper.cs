@@ -301,6 +301,30 @@ namespace Helper
             return teacher;
         }
 
+        public List<Teacher> FindTeachers(string teacherName)
+        {
+            var teachers = context.Teachers.Where(o => o.Name == teacherName);
+            return teachers as List<Teacher>;
+        }
+
+        public List<Teacher> GetTeacherList(int segment)
+        {
+            if(segment==1)
+            {
+                var list = context.Teachers.Where(o => o.Lessons.FirstOrDefault(l => l.SchoolClass.Grade<= 6)!=null);
+                return list as List<Teacher>;
+            }
+            else if(segment==2)
+            {
+                var list = context.Teachers.Where(o => o.Lessons.FirstOrDefault(l => l.SchoolClass.Grade > 6) != null);
+                return list as List<Teacher>;
+            }
+            else
+            {
+                return new List<Teacher>();
+            }
+        }
+
         public Teacher CreateTeacher(string teacherName)
         {
             var teacher = context.Teachers.FirstOrDefault(o => o.Name == teacherName);
@@ -470,7 +494,16 @@ namespace Helper
 
         public double GetPrice(LessonTypeEnum type)
         {
-            var constants = context.Constants.First();
+            var result = GetConstants();
+            Constants constants;
+            if (result.Succeeded)
+            {
+                constants = result.Object as Constants;
+            }
+            else
+            {
+                return -9;
+            }
             switch (type)
             {
                 case LessonTypeEnum.A:
@@ -494,7 +527,7 @@ namespace Helper
 
         public LessonResult GetConstants()
         {
-            var constants = context.Constants.First();
+            var constants = context.Constants.FirstOrDefault();
             if(constants == null)
             {
                 constants = new Constants
@@ -522,7 +555,7 @@ namespace Helper
 
         public LessonResult RecoverDefaultConstants()
         {
-            var constants = context.Constants.First();
+            var constants = context.Constants.FirstOrDefault();
             if(constants == null)
             {
                 var result = GetConstants();
@@ -554,7 +587,7 @@ namespace Helper
             {
                 return LessonResult.Error("constants实例没有正确传递。请尝试重新开启程序。");
             }
-            var old = context.Constants.First();
+            var old = context.Constants.FirstOrDefault();
             old.Duty1 = constants.Duty1;
             old.Duty2 = constants.Duty2;
             old.Duty3 = constants.Duty3;

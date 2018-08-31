@@ -8,7 +8,7 @@ using Model;
 
 namespace Helper
 {
-    class ActivityHelper
+    public class ActivityHelper
     {
         private DatabaseContext context { get; set; } 
 
@@ -152,6 +152,32 @@ namespace Helper
             {
                 lessonHelper.DisableLesson(teacher, activity.Time);
                 teacher.Activities.Add(activity);
+            }
+            Save();
+            return ActivityResult.Success();
+        }
+
+        public ActivityResult RemoveFromActivity(Activity activity, Teacher teacher)
+        {
+            if(activity==null||teacher==null)
+            {
+                return ActivityResult.Error("将教师从活动中移除失败，找不到对应的活动或教师。");
+            }
+            if(teacher.Activities.FirstOrDefault(o=>o.ID==activity.ID)==null)
+            {
+                return ActivityResult.Error("该教师尚未加入该活动。");
+            }
+            var t = context.Teachers.FirstOrDefault(o => o.ID == teacher.ID);
+            if(t==null)
+            {
+                return ActivityResult.Error("将教师从活动中移除失败，数据库中找不到对应的教师。");
+            }
+            activity.Teachers.Remove(t);
+            //测试用：
+            var tindb = context.Teachers.FirstOrDefault(o => o.ID == teacher.ID);
+            if(tindb.Activities.FirstOrDefault(o=>o.ID == activity.ID)!=null)
+            {
+                return ActivityResult.Error("EF多对多的删除方法有误。");
             }
             Save();
             return ActivityResult.Success();
