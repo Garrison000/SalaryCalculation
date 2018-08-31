@@ -16,11 +16,36 @@ namespace SalaryCalcWF
     {
         private LessonHelper lessonHelper;
         private Constants constants;
+        private List<Teacher> teachers;
+        private Teacher selectedTeacher;
+
         public MainForm()
         {
             InitializeComponent();
             lessonHelper = LessonHelper.GetInstance();
             QueryConstants();
+            AddBidings();
+            InitTeacherList();
+        }
+
+        private void InitTeacherList()
+        {
+            if(btnCalcPrim.Checked)
+            {
+                teachers = lessonHelper.GetTeacherList(1);
+            }
+            else
+            {
+                teachers = lessonHelper.GetTeacherList(2);
+            }
+            lbxTeachers.DisplayMember = "Name";
+            lbxTeachers.ValueMember = "ID";
+            lbxTeachers.DataSource = teachers;
+            lbxCalcTeacher.DataSource = teachers;//看看会不会自动更新。
+        }
+
+        private void AddBidings()
+        {
             tbxPriceA.DataBindings.Add("Text", constants, "Price_A");
             tbxPriceB.DataBindings.Add("Text", constants, "Price_B");
             tbxPriceC.DataBindings.Add("Text", constants, "Price_C");
@@ -34,6 +59,10 @@ namespace SalaryCalcWF
             tbxDuty1.DataBindings.Add("Text", constants, "Duty1");
             tbxDuty2.DataBindings.Add("Text", constants, "Duty2");
             tbxDuty3.DataBindings.Add("Text", constants, "Duty3");
+
+            btnCalcPrim.DataBindings.Add("Checked", rbtPrimary, "Checked");
+            btnCalcJunior.DataBindings.Add("Checked", rbtJunior, "Checked");
+
         }
 
         private void QueryConstants()
@@ -63,7 +92,7 @@ namespace SalaryCalcWF
 
         private void btnFindActivity_Click(object sender, EventArgs e)
         {
-            var window = new TeacherActivity();
+            var window = new TeacherActivity(selectedTeacher);
             window.Show();
                
         }
@@ -119,6 +148,47 @@ namespace SalaryCalcWF
         {
             var result = lessonHelper.RecoverDefaultConstants();
             constants = result.Object as Constants;
+        }
+
+        private void tbxSearchTeacher_Click(object sender, EventArgs e)
+        {
+            if(tbxSearchTeacher.Text == "搜索...")
+            {
+                tbxSearchTeacher.Text = "";
+            }
+        }
+
+        private void tbxCalcSearch_Click(object sender, EventArgs e)
+        {
+            if (tbxCalcSearch.Text == "搜索...")
+            {
+                tbxCalcSearch.Text = "";
+            }
+        }
+
+        private void btnQuery_Click(object sender, EventArgs e)
+        {
+            teachers = lessonHelper.FindTeachers(tbxCalcSearch.Text);
+        }
+
+        private void btnCalcSearch_Click(object sender, EventArgs e)
+        {
+            teachers = lessonHelper.FindTeachers(tbxCalcSearch.Text);
+        }
+
+        private void lbxCalcTeacher_SelectedValueChanged(object sender, EventArgs e)
+        {
+            selectedTeacher = lbxCalcTeacher.SelectedItems[0] as Teacher;
+        }
+
+        private void rbtPrimary_CheckedChanged(object sender, EventArgs e)
+        {
+            InitTeacherList();
+        }
+
+        private void lbxTeachers_SelectedValueChanged(object sender, EventArgs e)
+        {
+            selectedTeacher = lbxCalcTeacher.SelectedItems[0] as Teacher;
         }
     }
 }
