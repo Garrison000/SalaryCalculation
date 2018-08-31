@@ -60,7 +60,7 @@ namespace Helper
 
         public LessonHelper()
         {
-            helper.context = DatabaseContext.GetInstance();
+            context = DatabaseContext.GetInstance();
             //名称类型对应表的初始化
         }
         

@@ -16,6 +16,8 @@ namespace SalaryCalcWF
     {
         private LessonHelper lessonHelper;
         private Constants constants;
+        private ExcelInHelper excelInHelper;
+        private ExcelOutHelper excelOutHelper;
         public MainForm()
         {
             InitializeComponent();
@@ -70,7 +72,9 @@ namespace SalaryCalcWF
 
         private void btnInput_Click(object sender, EventArgs e)
         {
-
+            //测试用的代码
+            //excelInHelper.ExcelIn("2018上课表(1)");
+            //excelOutHelper.ExcelOut();
         }
 
         private void btnLessonA_Click(object sender, EventArgs e)

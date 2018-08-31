@@ -8,7 +8,7 @@ using Model;
 
 namespace Helper
 {
-    class ExcelOutHelper
+    public class ExcelOutHelper
     {
         private Application app { get; set; }
         private Workbooks wbs { get; set; }
