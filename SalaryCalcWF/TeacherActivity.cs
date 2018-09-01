@@ -66,7 +66,7 @@ namespace SalaryCalcWF
 
         private void btnAddMon_Click(object sender, EventArgs e)
         {
-            var window = new AddActivity();
+            var window = new AddActivity(ActivityTypeEnum.Monitoring);
             window.Show();
         }
     }

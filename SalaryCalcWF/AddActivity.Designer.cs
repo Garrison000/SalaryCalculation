@@ -38,12 +38,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.rbtActAuto = new System.Windows.Forms.RadioButton();
             this.rbtActMannual = new System.Windows.Forms.RadioButton();
-            this.lblActMannual = new System.Windows.Forms.Label();
-            this.lblActAuto = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.btnActTeachers = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnConfirm = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // cbxActType
@@ -104,9 +103,9 @@
             this.chbxActOverride.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chbxActOverride.Location = new System.Drawing.Point(280, 298);
             this.chbxActOverride.Name = "chbxActOverride";
-            this.chbxActOverride.Size = new System.Drawing.Size(210, 28);
+            this.chbxActOverride.Size = new System.Drawing.Size(258, 28);
             this.chbxActOverride.TabIndex = 6;
-            this.chbxActOverride.Text = "覆盖同时段课程";
+            this.chbxActOverride.Text = "覆盖同时段教师课程";
             this.chbxActOverride.UseVisualStyleBackColor = true;
             // 
             // label4
@@ -132,31 +131,13 @@
             // rbtActMannual
             // 
             this.rbtActMannual.AutoSize = true;
-            this.rbtActMannual.Location = new System.Drawing.Point(280, 507);
+            this.rbtActMannual.Location = new System.Drawing.Point(280, 462);
             this.rbtActMannual.Name = "rbtActMannual";
             this.rbtActMannual.Size = new System.Drawing.Size(137, 28);
             this.rbtActMannual.TabIndex = 9;
             this.rbtActMannual.TabStop = true;
             this.rbtActMannual.Text = "手动输入";
             this.rbtActMannual.UseVisualStyleBackColor = true;
-            // 
-            // lblActMannual
-            // 
-            this.lblActMannual.AutoSize = true;
-            this.lblActMannual.Location = new System.Drawing.Point(276, 547);
-            this.lblActMannual.Name = "lblActMannual";
-            this.lblActMannual.Size = new System.Drawing.Size(82, 24);
-            this.lblActMannual.TabIndex = 10;
-            this.lblActMannual.Text = "label5";
-            // 
-            // lblActAuto
-            // 
-            this.lblActAuto.AutoSize = true;
-            this.lblActAuto.Location = new System.Drawing.Point(276, 470);
-            this.lblActAuto.Name = "lblActAuto";
-            this.lblActAuto.Size = new System.Drawing.Size(82, 24);
-            this.lblActAuto.TabIndex = 11;
-            this.lblActAuto.Text = "label6";
             // 
             // label7
             // 
@@ -194,17 +175,23 @@
             this.btnConfirm.Text = "确定";
             this.btnConfirm.UseVisualStyleBackColor = true;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(280, 506);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(161, 35);
+            this.textBox1.TabIndex = 20;
+            // 
             // AddActivity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(662, 766);
+            this.ClientSize = new System.Drawing.Size(662, 711);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.btnActTeachers);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.lblActAuto);
-            this.Controls.Add(this.lblActMannual);
             this.Controls.Add(this.rbtActMannual);
             this.Controls.Add(this.rbtActAuto);
             this.Controls.Add(this.label4);
@@ -234,11 +221,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.RadioButton rbtActAuto;
         private System.Windows.Forms.RadioButton rbtActMannual;
-        private System.Windows.Forms.Label lblActMannual;
-        private System.Windows.Forms.Label lblActAuto;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnActTeachers;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnConfirm;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

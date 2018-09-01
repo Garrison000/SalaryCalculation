@@ -14,6 +14,8 @@ namespace Helper
 
         private LessonHelper lessonHelper { get; set; }
 
+        private int _totalWeeks;
+
         public int currentTerm
         {
             get
@@ -35,16 +37,16 @@ namespace Helper
         {
             get
             {
-                if (totalWeeks == 0)
+                if (_totalWeeks == 0)
                 {
                     var constants = context.Constants.First();
-                    totalWeeks = constants.TotalWeeks;
+                    _totalWeeks = constants.TotalWeeks;
                 }
-                return totalWeeks;
+                return _totalWeeks;
             }
             set
             {
-                totalWeeks = value;
+                _totalWeeks = value;
             }
         }
 
@@ -95,12 +97,12 @@ namespace Helper
             {
                 if (time.Order == (int)TimeType.Default)
                 {
-                    var activities = t.Activities.Where(o => o.Time.Term == time.Term);
+                    var activities = t.Activities.Where(o => o.Time.Term == time.Term).ToList();
                     return ActivityResult.Success(activities);
                 }
                 else
                 {
-                    var activities = t.Activities.Where(o => o.Time.Term == time.Term && o.Time.Order == time.Order);
+                    var activities = t.Activities.Where(o => o.Time.Term == time.Term && o.Time.Order == time.Order).ToList();
                     return ActivityResult.Success(activities);
                 }
 
@@ -109,12 +111,12 @@ namespace Helper
             {
                 if (time.Order == (int)TimeType.Default)
                 {
-                    var activities = t.Activities.Where(o => o.Time.Term == time.Term && o.Time.Week == time.Week);
+                    var activities = t.Activities.Where(o => o.Time.Term == time.Term && o.Time.Week == time.Week).ToList();
                     return ActivityResult.Success(activities);
                 }
                 else
                 {
-                    var activities = t.Activities.Where(o => o.Time.Term == time.Term && o.Time.Week == time.Week && o.Time.Order == time.Order);
+                    var activities = t.Activities.Where(o => o.Time.Term == time.Term && o.Time.Week == time.Week && o.Time.Order == time.Order).ToList();
                     return ActivityResult.Success(activities);
                 }
             }
@@ -216,17 +218,22 @@ namespace Helper
             switch (e)
             {
                 case ActivityTypeEnum.Affairs:
-                    return "图书馆";
+                    return "兼任图书管理、实验室、机房管理";
                 case ActivityTypeEnum.ClassAdviser:
                     return "担任班主任";
                 case ActivityTypeEnum.Library:
-                    return "图书管理";
+                    return "负责小学图书借阅工作";
                 case ActivityTypeEnum.Monitoring:
                     return "监考";
                 case ActivityTypeEnum.News:
                     return "新闻组或宣传组成员";
+                case ActivityTypeEnum.Cross:
+                    return "跨头跨科";
+                case ActivityTypeEnum.Other:
+                    return "其他";
+                default:
+                    return "未知";
             }
-            return "";
         }
 
         public void Save()

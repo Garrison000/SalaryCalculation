@@ -40,6 +40,8 @@ namespace SalaryCalcWF
             }
             lbxTeachers.DisplayMember = "Name";
             lbxTeachers.ValueMember = "ID";
+            lbxCalcTeacher.DisplayMember = "Name";
+            lbxCalcTeacher.ValueMember = "ID";
             lbxTeachers.DataSource = teachers;
             lbxCalcTeacher.DataSource = teachers;//看看会不会自动更新。
         }
@@ -77,6 +79,10 @@ namespace SalaryCalcWF
             {
                 MessageBox.Show(string.Join(",", result.Info));
             }
+            else
+            {
+                MessageBox.Show("保存成功。");
+            }
         }
 
         private void btnEditTeacher_Click(object sender, EventArgs e)
@@ -93,6 +99,7 @@ namespace SalaryCalcWF
         private void btnFindActivity_Click(object sender, EventArgs e)
         {
             var window = new TeacherActivity(selectedTeacher);
+            window.Text = selectedTeacher.Name;
             window.Show();
                
         }
@@ -186,11 +193,30 @@ namespace SalaryCalcWF
         {
             InitTeacherList();
         }
+        private void rbtJunior_CheckedChanged(object sender, EventArgs e)
+        {
+            InitTeacherList();
+        }
 
         private void lbxTeachers_SelectedValueChanged(object sender, EventArgs e)
         {
             if(lbxCalcTeacher.SelectedItems.Count!=0)
                 selectedTeacher = lbxCalcTeacher.SelectedItems[0] as Teacher;
+        }
+
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            lessonHelper.InputLesson("语文", "Dave", "小一（1）班", new Time { Order = 101, Term =(int) TimeType.Default, Week =(int) TimeType.Default }, -1, 1);
+        }
+
+        private void rbtPrimary_MouseClick(object sender, MouseEventArgs e)
+        {
+            InitTeacherList();
+        }
+
+        private void rbtJunior_MouseClick(object sender, MouseEventArgs e)
+        {
+            InitTeacherList();
         }
     }
 }

@@ -156,6 +156,7 @@
             this.btnClass = new System.Windows.Forms.Button();
             this.btnInput = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
+            this.btnTest = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.pgeSalary.SuspendLayout();
             this.groupBox9.SuspendLayout();
@@ -188,7 +189,7 @@
             this.教师ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1475, 39);
+            this.menuStrip1.Size = new System.Drawing.Size(1474, 39);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -499,14 +500,14 @@
             this.groupBox7.Controls.Add(this.btnCalcPrim);
             this.groupBox7.Location = new System.Drawing.Point(32, 45);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(331, 608);
+            this.groupBox7.Size = new System.Drawing.Size(331, 627);
             this.groupBox7.TabIndex = 4;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "选择教师";
             // 
             // btnCalcSearch
             // 
-            this.btnCalcSearch.Location = new System.Drawing.Point(45, 544);
+            this.btnCalcSearch.Location = new System.Drawing.Point(45, 560);
             this.btnCalcSearch.Name = "btnCalcSearch";
             this.btnCalcSearch.Size = new System.Drawing.Size(203, 48);
             this.btnCalcSearch.TabIndex = 4;
@@ -516,7 +517,7 @@
             // 
             // tbxCalcSearch
             // 
-            this.tbxCalcSearch.Location = new System.Drawing.Point(45, 494);
+            this.tbxCalcSearch.Location = new System.Drawing.Point(45, 503);
             this.tbxCalcSearch.Name = "tbxCalcSearch";
             this.tbxCalcSearch.Size = new System.Drawing.Size(203, 35);
             this.tbxCalcSearch.TabIndex = 3;
@@ -525,6 +526,7 @@
             // 
             // lbxCalcTeacher
             // 
+            this.lbxCalcTeacher.DisplayMember = "\"Name\"";
             this.lbxCalcTeacher.FormattingEnabled = true;
             this.lbxCalcTeacher.ItemHeight = 24;
             this.lbxCalcTeacher.Location = new System.Drawing.Point(45, 138);
@@ -868,7 +870,7 @@
             // 
             // btnFindActivity
             // 
-            this.btnFindActivity.Location = new System.Drawing.Point(45, 644);
+            this.btnFindActivity.Location = new System.Drawing.Point(45, 653);
             this.btnFindActivity.Name = "btnFindActivity";
             this.btnFindActivity.Size = new System.Drawing.Size(203, 45);
             this.btnFindActivity.TabIndex = 6;
@@ -878,7 +880,7 @@
             // 
             // btnEditTeacher
             // 
-            this.btnEditTeacher.Location = new System.Drawing.Point(45, 591);
+            this.btnEditTeacher.Location = new System.Drawing.Point(45, 601);
             this.btnEditTeacher.Name = "btnEditTeacher";
             this.btnEditTeacher.Size = new System.Drawing.Size(203, 46);
             this.btnEditTeacher.TabIndex = 5;
@@ -888,7 +890,7 @@
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(45, 537);
+            this.btnQuery.Location = new System.Drawing.Point(45, 547);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(203, 48);
             this.btnQuery.TabIndex = 4;
@@ -907,6 +909,7 @@
             // 
             // lbxTeachers
             // 
+            this.lbxTeachers.DisplayMember = "\"Name\"";
             this.lbxTeachers.FormattingEnabled = true;
             this.lbxTeachers.ItemHeight = 24;
             this.lbxTeachers.Location = new System.Drawing.Point(45, 138);
@@ -925,6 +928,7 @@
             this.rbtJunior.TabStop = true;
             this.rbtJunior.Text = "初中部";
             this.rbtJunior.UseVisualStyleBackColor = true;
+            this.rbtJunior.MouseClick += new System.Windows.Forms.MouseEventHandler(this.rbtJunior_MouseClick);
             // 
             // rbtPrimary
             // 
@@ -936,7 +940,7 @@
             this.rbtPrimary.TabStop = true;
             this.rbtPrimary.Text = "小学部";
             this.rbtPrimary.UseVisualStyleBackColor = true;
-            this.rbtPrimary.CheckedChanged += new System.EventHandler(this.rbtPrimary_CheckedChanged);
+            this.rbtPrimary.MouseClick += new System.Windows.Forms.MouseEventHandler(this.rbtPrimary_MouseClick);
             // 
             // pgeLesson
             // 
@@ -1405,6 +1409,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnTest);
             this.groupBox1.Controls.Add(this.btnClass);
             this.groupBox1.Controls.Add(this.btnInput);
             this.groupBox1.Location = new System.Drawing.Point(29, 26);
@@ -1445,11 +1450,22 @@
             this.tabControl.Size = new System.Drawing.Size(1451, 836);
             this.tabControl.TabIndex = 0;
             // 
+            // btnTest
+            // 
+            this.btnTest.Location = new System.Drawing.Point(364, 64);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(131, 55);
+            this.btnTest.TabIndex = 2;
+            this.btnTest.Text = "testAdd";
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1475, 895);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1474, 895);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.tabControl);
             this.Name = "MainForm";
@@ -1612,6 +1628,7 @@
         private System.Windows.Forms.Button btnClass;
         private System.Windows.Forms.Button btnInput;
         private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.Button btnTest;
     }
 }
 

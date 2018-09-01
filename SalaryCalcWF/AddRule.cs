@@ -7,37 +7,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Model;
 using Helper;
+using Model;
 
 namespace SalaryCalcWF
 {
-    public partial class EditType : Form
+    public partial class AddRule : Form
     {
-        public delegate void FinishEditEventHandler(long id, string name, double price, double value, int grade);
-        public event FinishEditEventHandler FinishEditEvent;
+        public delegate void FinishAddRuleDelegate(string name, double price, double value, int grade);
+        public event FinishAddRuleDelegate FinishAddRuleEvent;
         private LessonHelper lessonHelper;
-        private LessonType original;
-        private string enString;
-
-        public EditType(LessonType type = null,string enstring="")
+        public AddRule(string sort)
         {
             InitializeComponent();
-            lessonHelper = LessonHelper.GetInstance();
-            if(type!=null)
-            {
-                original = type;
-                tbxName.Text = type.LessonName;
-                tbxGrade.Text = type.Grade.ToString();
-                tbxPrice.Text = type.Price.ToString();
-                tbxValue.Text = type.DefaultValue.ToString();
-                enString = enstring;
-            }
-            else
-            {
-                MessageBox.Show("没有传入type实例。");
+            tbxValue.Text = "1";
+            if (sort == "")
                 this.Close();
-            }
+            lessonHelper = LessonHelper.GetInstance();
+            tbxPrice.Text = lessonHelper.GetPrice(lessonHelper.LetterToEnum(sort)).ToString();
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
@@ -46,7 +33,7 @@ namespace SalaryCalcWF
             {
                 MessageBox.Show("请完整填写所有项目");
                 return;
-            }
+            }   
             double price, value;
             int grade;
             var result = double.TryParse(tbxPrice.Text, out price);
@@ -68,10 +55,9 @@ namespace SalaryCalcWF
                 return;
             }
 
-            FinishEditEvent?.Invoke(original.ID,tbxName.Text, price, value, grade);
+            FinishAddRuleEvent?.Invoke(tbxName.Text,price,value,grade);
             this.Close();
         }
-        
 
         private void btnCancel_Click(object sender, EventArgs e)
         {

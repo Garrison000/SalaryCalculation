@@ -50,10 +50,13 @@
             // dgvLesson
             // 
             this.dgvLesson.AllowUserToOrderColumns = true;
-            this.dgvLesson.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvLesson.ColumnHeadersHeight = 30;
             this.dgvLesson.Location = new System.Drawing.Point(58, 97);
+            this.dgvLesson.MultiSelect = false;
             this.dgvLesson.Name = "dgvLesson";
+            this.dgvLesson.RowHeadersWidth = 10;
             this.dgvLesson.RowTemplate.Height = 37;
+            this.dgvLesson.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvLesson.Size = new System.Drawing.Size(624, 334);
             this.dgvLesson.TabIndex = 1;
             // 
@@ -65,6 +68,7 @@
             this.btnConfirm.TabIndex = 2;
             this.btnConfirm.Text = "确定";
             this.btnConfirm.UseVisualStyleBackColor = true;
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // btnCancel
             // 
@@ -74,6 +78,7 @@
             this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "取消";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnEdit
             // 
@@ -83,6 +88,7 @@
             this.btnEdit.TabIndex = 4;
             this.btnEdit.Text = "修改选中";
             this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnDelete
             // 

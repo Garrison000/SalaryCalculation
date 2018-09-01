@@ -10,7 +10,7 @@ namespace Model
     public class LessonType
     {
         public long ID { get; set; }
-        public LessonTypeEnum Type { get; set; }
+        public int Type { get; set; }
         public string TypeName { get; set; }
         public string LessonName { get; set; }
         public int Grade { get; set; }
@@ -40,6 +40,7 @@ namespace Model
         Mon1,
         Mon2,
         Over,
-        Other
+        Other,
+        None
     }
 }

@@ -21,7 +21,7 @@ namespace Model
         public long ID { get; set; }
         public string Name { get; set; }
         public double DefaultValue { get; set; }//课时
-        public ActivityTypeEnum TypeEnum { get; set; }
+        public int TypeEnum { get; set; }
         public virtual List<Activity> Activities { get; set; }
     }
 
@@ -32,6 +32,8 @@ namespace Model
         Library,
         ClassAdviser,
         News,
-        Other
+        Cross,
+        Other,
+        None
     }
 }

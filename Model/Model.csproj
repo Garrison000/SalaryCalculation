@@ -67,6 +67,10 @@
     <Compile Include="Migrations\201808310741070_int2long.Designer.cs">
       <DependentUpon>201808310741070_int2long.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809011145176_TypeEnumFix.cs" />
+    <Compile Include="Migrations\201809011145176_TypeEnumFix.Designer.cs">
+      <DependentUpon>201809011145176_TypeEnumFix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NameType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,6 +90,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808310741070_int2long.resx">
       <DependentUpon>201808310741070_int2long.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809011145176_TypeEnumFix.resx">
+      <DependentUpon>201809011145176_TypeEnumFix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

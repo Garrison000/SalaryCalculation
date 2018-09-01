@@ -12,36 +12,40 @@ namespace Helper
     public class LessonHelper
     {
         private DatabaseContext context { get; set; }
+
+        private int _currentTerm;
+
+        private int _totalWeeks;
         public int currentTerm
         {
             get
             {
-                if(currentTerm==0)
+                if(_currentTerm==0)
                 {
                     var constants = context.Constants.First();
-                    currentTerm=constants.Term;
+                    _currentTerm=constants.Term;
                 }
-                return currentTerm;
+                return _currentTerm;
             }
             set
             {
-                currentTerm = value;
+                _currentTerm = value;
             }
         }
         public int totalWeeks
         {
             get
             {
-                if (totalWeeks == 0)
+                if (_totalWeeks == 0)
                 {
                     var constants = context.Constants.First();
-                    totalWeeks = constants.TotalWeeks;
+                    _totalWeeks = constants.TotalWeeks;
                 }
-                return totalWeeks;
+                return _totalWeeks;
             }
             set
             {
-                totalWeeks = value;
+                _totalWeeks = value;
             }
         }
         private static LessonHelper helper { get; set; }
@@ -191,12 +195,12 @@ namespace Helper
             {
                 if (time.Order == (int)TimeType.Default)
                 {
-                    var lessons = t.Lessons.Where(o => o.Time.Term == time.Term);
+                    var lessons = t.Lessons.Where(o => o.Time.Term == time.Term).ToList();
                     return LessonResult.Success(lessons);
                 }
                 else
                 {
-                    var lessons = t.Lessons.Where(o => o.Time.Term == time.Term && o.Time.Order==time.Order);
+                    var lessons = t.Lessons.Where(o => o.Time.Term == time.Term && o.Time.Order==time.Order).ToList();
                     return LessonResult.Success(lessons);
                 }
 
@@ -205,7 +209,7 @@ namespace Helper
             {
                 if (time.Order == (int)TimeType.Default)
                 {
-                    var lessons = t.Lessons.Where(o => o.Time.Term == time.Term && o.Time.Week == time.Week);
+                    var lessons = t.Lessons.Where(o => o.Time.Term == time.Term && o.Time.Week == time.Week).ToList();
                     return LessonResult.Success(lessons);
                 }
                 else
@@ -304,7 +308,7 @@ namespace Helper
 
         public List<Teacher> FindTeachers(string teacherName)
         {
-            var teachers = context.Teachers.Where(o => o.Name == teacherName);
+            var teachers = context.Teachers.Where(o => o.Name == teacherName).ToList();
             return teachers as List<Teacher>;
         }
 
@@ -312,12 +316,12 @@ namespace Helper
         {
             if(segment==1)
             {
-                var list = context.Teachers.Where(o => o.Lessons.FirstOrDefault(l => l.SchoolClass.Grade<= 6)!=null);
+                var list = context.Teachers.Where(o => o.Lessons.FirstOrDefault(l => l.SchoolClass.Grade<= 6)!=null).ToList();
                 return list as List<Teacher>;
             }
             else if(segment==2)
             {
-                var list = context.Teachers.Where(o => o.Lessons.FirstOrDefault(l => l.SchoolClass.Grade > 6) != null);
+                var list = context.Teachers.Where(o => o.Lessons.FirstOrDefault(l => l.SchoolClass.Grade > 6) != null).ToList();
                 return list as List<Teacher>;
             }
             else
@@ -410,7 +414,7 @@ namespace Helper
                 context.LessonTypes.Add(new LessonType
                 {
                     DefaultValue = 1,//默认1课时
-                    Price = GetPrice(type.Type),
+                    Price = GetPrice((LessonTypeEnum)type.Type),
                     LessonName = name,//单元测试一下这个tostring是什么样子的.
                     Type = type.Type
                 });
@@ -421,9 +425,9 @@ namespace Helper
 
         public LessonResult GetTypeByEnum(LessonTypeEnum en)
         {
-            var types = context.LessonTypes.Where(o => o.Type == en);
+            List<LessonType> types = context.LessonTypes.Where(o => o.Type == (int)en).ToList();
             return LessonResult.Success(types);
-        }      
+        }
         
         public LessonTypeEnum LetterToEnum(string letter)
         {
@@ -440,27 +444,34 @@ namespace Helper
                 case "M":
                     return LessonTypeEnum.Morning;
                 case "D":
-                default:
                     return LessonTypeEnum.D;
+                default:
+                    return LessonTypeEnum.None;
             }
         }
 
-        public LessonResult AddLessonType(string name, double price, double value, int grade)
+        public LessonResult AddLessonType(string lessonName, double price, double value, int grade, string enumstring)
         {
-            if (name == "" || price == 0 || value == 0 || grade == 0) 
+            if (lessonName == "" || price == 0 || value == 0 || grade == 0|| enumstring=="") 
             {
                 return LessonResult.Error("请输入所有字段。");
             }
-            if (context.LessonTypes.Where(o => o.LessonName == name && o.Grade == grade).Count() != 0) 
+            if (context.LessonTypes.Where(o => o.LessonName == lessonName && o.Grade == grade).Count() != 0) 
             {
                 return LessonResult.Error("相同的规则已经存在，请检查规则列表。");
             }
+            var en = LetterToEnum(enumstring);
+            if(en==LessonTypeEnum.None)
+            {
+                return LessonResult.Error("课程类型传递错误，联系开发者。");
+            }
             var type = new LessonType
             {
-                LessonName = name,
+                LessonName = lessonName,
                 Grade = grade,
                 DefaultValue = value,
-                Price = price
+                Price = price,
+                Type = (int)en
             };
             context.LessonTypes.Add(type);
             Save();
@@ -473,6 +484,10 @@ namespace Helper
             {
                 return LessonResult.Error("请输入所有字段。");
             }
+            if(GetLessonType(name,grade).Succeeded)
+            {
+                return LessonResult.Error("存在相同的规则，请去除该规则后重试。");
+            }
             type.LessonName = name;
             type.Price = price;
             type.DefaultValue = value;
@@ -481,8 +496,18 @@ namespace Helper
             return LessonResult.Success();
         }
 
-        public LessonResult DeleteLEssonType(LessonType type)
+        public LessonResult EditLessonType(long id, string name, double price, double value, int grade)
         {
+            var type = context.LessonTypes.FirstOrDefault(o => o.ID == id);
+            return EditLessonType(type, name, price, value, grade);
+        }
+
+        public LessonResult DeleteLessonType(LessonType type)
+        {
+            if (type == null)
+            {
+                return LessonResult.Error("没有选择规则。");
+            }
             var typeInDb = context.LessonTypes.FirstOrDefault(o => o.ID == type.ID);
             if (typeInDb==null)
             {
