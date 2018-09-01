@@ -22,7 +22,7 @@ namespace Helper
         {
             //db = DatabaseContext.GetInstance();
             string[] str = ExcelToString(FileName);
-            LessonHelper lh = new LessonHelper();
+            LessonHelper lh = LessonHelper.GetInstance();
             for(int i=0; ;i+=12)//循环一次一个班，写得极丑...
             {
                 int OrderNum1=1,OrderNum2,Order;//num1是周，num2是第几节课
@@ -44,26 +44,32 @@ namespace Helper
                         Order = OrderNum1 * 100 + OrderNum2;
                         OrderNum1++;
                         string[] temp;
-                        if(item.Contains("+"))
+                        if(item.Contains('\n'))
                         {
-                            temp = item.Split('+');
-                            string[] cls1 = temp[0].Split('\n');
-                            string[] cls2 = temp[1].Split('\n');
-                            lh.InputLesson(cls1[0], cls1[1], @class, new Time { Term = (int)TimeType.Default, Order = Order, Week = (int)TimeType.Default }, (int)TimeType.Default, 0.5);
-                            lh.InputLesson(cls2[0], cls2[1], @class, new Time { Term = (int)TimeType.Default, Order = Order, Week = (int)TimeType.Default }, (int)TimeType.Default, 0.5);
-                        }
-                        else if(item.Contains("-"))
-                        {
-                            temp = item.Split('-');
-                            string[] cls1 = temp[0].Split('\n');
-                            string[] cls2 = temp[1].Split('\n');
-                            lh.InputLesson(cls1[0], cls1[1], @class, new Time { Term = (int)TimeType.Default, Order = Order, Week = (int)TimeType.Sigle },(int)TimeType.Default,0.5);
-                            lh.InputLesson(cls2[0], cls2[1], @class, new Time { Term = (int)TimeType.Default, Order = Order, Week = (int)TimeType.Double }, (int)TimeType.Default, 0.5);
-                        }
-                        else
-                        {
-                            temp = item.Split('\n');
-                            lh.InputLesson(temp[0], temp[1], @class, new Time { Term = (int)TimeType.Default, Order = Order, Week = (int)TimeType.Default }, (int)TimeType.Default, 0.5);
+                            if (item.Contains("+"))
+                            {
+                                temp = item.Split('+');
+                                string[] cls1 = temp[0].Split('\n');
+                                string[] cls2 = temp[1].Split('\n');
+                                lh.InputLesson(cls1[0], cls1[1], @class, new Time { Term = (int)TimeType.Default, Order = Order, Week = (int)TimeType.Default }, (int)TimeType.Default, 0.5);
+                                lh.InputLesson(cls2[0], cls2[1], @class, new Time { Term = (int)TimeType.Default, Order = Order, Week = (int)TimeType.Default }, (int)TimeType.Default, 0.5);
+                            }
+                            else if (item.Contains("-"))
+                            {
+                                temp = item.Split('-');
+                                string[] cls1 = temp[0].Split('\n');
+                                string[] cls2 = temp[1].Split('\n');
+                                lh.InputLesson(cls1[0], cls1[1], @class, new Time { Term = (int)TimeType.Default, Order = Order, Week = (int)TimeType.Sigle }, (int)TimeType.Default, 0.5);
+                                lh.InputLesson(cls2[0], cls2[1], @class, new Time { Term = (int)TimeType.Default, Order = Order, Week = (int)TimeType.Double }, (int)TimeType.Default, 0.5);
+                            }
+                            else
+                            {
+                                if (item != "")
+                                {
+                                    temp = item.Split('\n');
+                                    lh.InputLesson(temp[0], temp[1], @class, new Time { Term = (int)TimeType.Default, Order = Order, Week = (int)TimeType.Default }, (int)TimeType.Default, 0.5);
+                                }
+                            }
                         }
                     }
                 }
@@ -126,19 +132,22 @@ namespace Helper
         private string GetRowContent(int row)
         {
             string s;
-            s = GetString(ws.Cells[row,4],row,4);
-            if(s=="")
+            if(row%34==3)
             {
-                return s;
+                s = GetString(ws.Cells[row, 2], row, 2);
             }
             else
             {
-                for(int i=4;i<=12 ;i+=2)
+                s = GetString(ws.Cells[row, 4], row, 4);
+                if (s != "")
                 {
-                    s = s + "|" + GetString(ws.Cells[row, i],row,i);
+                    for (int i = 6; i <= 12; i += 2)
+                    {
+                        s = s + "|" + GetString(ws.Cells[row, i], row, i);
+                    }
                 }
-                return s;
             }
+            return s;
         }
 
         private string[] GetAllContent()

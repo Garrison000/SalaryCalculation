@@ -12,36 +12,38 @@ namespace Helper
     public class LessonHelper
     {
         private DatabaseContext context { get; set; }
+        private int _currentTerm;
+        private int _totalWeeks;
         public int currentTerm
         {
             get
             {
-                if(currentTerm==0)
+                if(_currentTerm==0)
                 {
                     var constants = context.Constants.First();
-                    currentTerm=constants.Term;
-                }
-                return currentTerm;
+                    _currentTerm = constants.Term;
+                } 
+                return _currentTerm;
             }
             set
             {
-                currentTerm = value;
+                _currentTerm = value;
             }
         }
         public int totalWeeks
         {
             get
             {
-                if (totalWeeks == 0)
+                if (_totalWeeks == 0)
                 {
                     var constants = context.Constants.First();
-                    totalWeeks = constants.TotalWeeks;
+                    _totalWeeks = constants.TotalWeeks;
                 }
-                return totalWeeks;
+                return _totalWeeks;
             }
             set
             {
-                totalWeeks = value;
+                _totalWeeks = value;
             }
         }
         private static LessonHelper helper { get; set; }
