@@ -106,7 +106,10 @@ namespace SalaryCalcWF
 
         private void btnInput_Click(object sender, EventArgs e)
         {
-
+            ExcelInHelper excelInHelper = new ExcelInHelper();
+            ExcelOutHelper excelOutHelper = new ExcelOutHelper();
+            excelInHelper.ExcelIn("测试课表");
+            excelOutHelper.ExcelOut();
         }
 
         private void btnLessonA_Click(object sender, EventArgs e)

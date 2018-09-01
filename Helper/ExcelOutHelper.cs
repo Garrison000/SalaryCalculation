@@ -18,9 +18,12 @@ namespace Helper
 
         public string ExcelOut()
         {
+            //测试用代码
+            //LessonHelper lh = LessonHelper.GetInstance();
+            //lh.InputLesson("语文", "Tony", "小一（1）班课表", new Time { Order = 106, Week = (int)TimeType.Default, Term = (int)TimeType.Default }, (int)TimeType.Default, 1);
             ExcelInit();
             //Save();
-            if(SaveAs("工资表"))
+            if(SaveAs("测试工资表"))
             {
                 return "文件导出成功！";
             }
